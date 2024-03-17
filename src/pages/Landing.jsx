@@ -41,9 +41,9 @@ function Landing() {
 
   return (
     <div className='h-screen p-10 flex flex-col justify-between'>
-      <div className='flex flex-col items-center gap-8 text-center'>
-        <img src={activeItem.img} alt='carlousel image' className='w-96' />
-        <div className='grid grid-rows-[10rem_6rem_4rem] items-center justify-items-center'>
+      <div className='flex flex-col items-center gap-4 text-center'>
+        <img src={activeItem.img} alt='carlousel image' className='w-[40%]' />
+        <div className='grid grid-rows-[9rem_6rem_4rem] items-center justify-items-center'>
           <p className='font-bold leading-[1.1] text-title-lg text-dark-100'>
             {activeItem.title}
           </p>
@@ -67,7 +67,7 @@ function Landing() {
           </div>
         </div>
       </div>
-      <div className='flex flex-col gap-8 text-title-sm font-semibold'>
+      <div className='flex flex-col gap-8 text-tiny font-semibold'>
         <button className='py-5 rounded-[1.6rem] bg-violet-100 text-light-80'>
           New Expense
         </button>
