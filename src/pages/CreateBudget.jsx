@@ -1,4 +1,5 @@
 import HeaderWithBackButton from '../components/HeaderWithBackButton';
+import Label from '../components/Label';
 
 function CreateBudget() {
   return (
@@ -6,17 +7,15 @@ function CreateBudget() {
       <div className='h-[22rem] p-10 flex flex-col justify-between'>
         <HeaderWithBackButton title='Add Budget' />
         <div>
-          <label
-            htmlFor='name'
-            className='text-title-sm font-semibold text-light-80/60'
-          >
+          <Label variant='big' htmlFor='name'>
             Budget Name
-          </label>
+          </Label>
           <input
             type='text'
             id='name'
-            className='w-full bg-transparent text-title-lg font-semibold'
-            placeholder='Typing...'
+            className='w-full bg-[transparent] text-title-lg font-semibold'
+            placeholder='Start typing...'
+            autoComplete='off'
           />
         </div>
       </div>
