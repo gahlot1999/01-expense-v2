@@ -6,6 +6,11 @@ import Button from '../components/Button';
 
 const carouselData = [
   {
+    title: 'Planning ahead',
+    subTitle: 'Setup your budget for each category so you in control',
+    img: landingPageImg3,
+  },
+  {
     title: 'Gain total control of your money',
     subTitle: 'Become your own money manager and make every cent count',
     img: landingPageImg1,
@@ -16,11 +21,6 @@ const carouselData = [
       'Track your transaction easily,with categories and financial report ',
     img: landingPageImg2,
   },
-  {
-    title: 'Planning ahead',
-    subTitle: 'Setup your budget for each category so you in control',
-    img: landingPageImg3,
-  },
 ];
 
 function Landing() {
@@ -30,7 +30,7 @@ function Landing() {
   console.log(activeCarouselIndex);
 
   useEffect(() => {
-    setInterval(changeCaruselItem, 2500);
+    setInterval(changeCaruselItem, 3500);
     function changeCaruselItem() {
       setActiveCarouselndex((curr) =>
         curr === carouselData.length - 1 ? 0 : curr + 1,
