@@ -35,10 +35,7 @@ function Landing() {
     <div>
       <div>
         <div>
-          <img
-            src={`/public/landingPage${activeCarouselIndex + 1}.png`}
-            alt=''
-          />
+          <img src={`/landingPage${activeCarouselIndex + 1}.png`} alt='' />
         </div>
         <div>
           <p>{activeItem.title}</p>
