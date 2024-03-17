@@ -41,9 +41,9 @@ function Landing() {
 
   return (
     <div className='h-screen p-10 flex flex-col justify-between'>
-      <div className='flex flex-col items-center gap-16 text-center'>
+      <div className='flex flex-col items-center gap-8 text-center'>
         <img src={activeItem.img} alt='carlousel image' className='w-96' />
-        <div className='flex flex-col items-center gap-10'>
+        <div className='grid grid-rows-[10rem_6rem_4rem] items-center justify-items-center'>
           <p className='font-bold leading-[1.1] text-title-lg text-dark-100'>
             {activeItem.title}
           </p>
@@ -55,7 +55,8 @@ function Landing() {
           <div className='flex items-center gap-12'>
             {carouselData.map((el, i) => (
               <div
-                className={` rounded-full ${
+                onClick={() => setActiveCarouselndex(i)}
+                className={`cursor-pointer rounded-full ${
                   i === activeCarouselIndex
                     ? 'h-8 w-8 bg-violet-100'
                     : 'h-4 w-4 bg-violet-40'
@@ -66,7 +67,7 @@ function Landing() {
           </div>
         </div>
       </div>
-      <div className='flex flex-col gap-8 text-title-sm'>
+      <div className='flex flex-col gap-8 text-title-sm font-semibold'>
         <button className='py-5 rounded-[1.6rem] bg-violet-100 text-light-80'>
           New Expense
         </button>
