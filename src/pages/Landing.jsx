@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import landingPageImg1 from '/landingPage1.png';
-import landingPageImg2 from '/landingPage2.png';
-import landingPageImg3 from '/landingPage3.png';
+import landingPageImg1 from '../assets/landingPage1.png';
+import landingPageImg2 from '../assets/landingPage2.png';
+import landingPageImg3 from '../assets/landingPage3.png';
 import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 

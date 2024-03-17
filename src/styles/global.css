@@ -50,4 +50,9 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
+input {
+  outline: none;
+  border: none;
+}
 /* #endregion CSS RESET END */
