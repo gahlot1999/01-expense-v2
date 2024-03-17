@@ -11,7 +11,7 @@ function HeaderWithBackButton({ title }) {
         className='w-[3rem] absolute top-[50%] left-4 translate-y-[-50%]'
         onClick={() => navigate(-1)}
       />
-      <p className='text-light-100 text-title-md text-center'>{title}</p>
+      <p className='text-light-100 text-title-sm text-center'>{title}</p>
     </div>
   );
 }
