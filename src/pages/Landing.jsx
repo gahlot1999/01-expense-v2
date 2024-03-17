@@ -3,6 +3,7 @@ import landingPageImg1 from '/landingPage1.png';
 import landingPageImg2 from '/landingPage2.png';
 import landingPageImg3 from '/landingPage3.png';
 import Button from '../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 const carouselData = [
   {
@@ -24,10 +25,9 @@ const carouselData = [
 ];
 
 function Landing() {
+  const navigate = useNavigate();
   const [activeCarouselIndex, setActiveCarouselndex] = useState(0);
   const activeItem = carouselData[activeCarouselIndex];
-
-  console.log(activeCarouselIndex);
 
   useEffect(() => {
     setInterval(changeCaruselItem, 3500);
@@ -67,7 +67,7 @@ function Landing() {
         </div>
       </div>
       <div className='flex flex-col gap-8 font-semibold text-small'>
-        <Button>New Expense</Button>
+        <Button onClick={() => navigate('/createbudget')}>New Expense</Button>
         <Button variant='secondary'>Old Expense</Button>
       </div>
     </div>

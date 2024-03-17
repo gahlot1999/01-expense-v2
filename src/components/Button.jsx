@@ -1,4 +1,4 @@
-function Button({ variant = 'primary', children }) {
+function Button({ variant = 'primary', children, onClick, ...props }) {
   const baseStyles = 'py-5 rounded-[1.6rem]';
   let activeStyles = '';
 
@@ -16,7 +16,13 @@ function Button({ variant = 'primary', children }) {
   }
 
   return (
-    <button className={`${baseStyles} ${activeStyles}`}>{children}</button>
+    <button
+      className={`${baseStyles} ${activeStyles}`}
+      onClick={onClick}
+      {...props}
+    >
+      {children}
+    </button>
   );
 }
 
