@@ -11,6 +11,12 @@ function HeaderWithBackButton({ title }) {
         className='w-[3rem] absolute top-[50%] left-4 translate-y-[-50%]'
         onClick={() => navigate(-1)}
       />
+      <img
+        src='/arrow-left.png'
+        alt='back button icon'
+        className='w-[3rem] absolute top-[550%] left-4 translate-y-[-50%]'
+        onClick={() => navigate(-1)}
+      />a
       <p className='text-light-100 text-title-sm text-center'>{title}</p>
     </div>
   );
