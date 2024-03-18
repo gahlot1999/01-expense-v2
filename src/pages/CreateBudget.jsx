@@ -51,7 +51,7 @@ function CreateBudget() {
           />
         </div>
       </div>
-      <div className='bg-light-100 overflow-y-auto p-[3.5rem_2.5rem] rounded-[3.2rem_3.2rem_0_0]'>
+      <div className='bg-light-100 overflow-y-auto p-10 rounded-[3.2rem_3.2rem_0_0]'>
         <div className='flex flex-col gap-4'>
           <Input
             {...register('budgetAmount', { required: true })}
