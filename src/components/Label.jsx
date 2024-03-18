@@ -8,6 +8,10 @@ function Label({ variant = 'form', children, mandatory = false, ...props }) {
       activeStyles = 'text-title-sm font-semibold text-light-80/60';
       break;
 
+    case 'form':
+      activeStyles = 'text-tiny text-dark-25';
+      break;
+
     default:
       break;
   }
@@ -17,6 +21,7 @@ function Label({ variant = 'form', children, mandatory = false, ...props }) {
         ${baseStyles} 
         ${activeStyles} 
         ${mandatory && mandatoryStyles}
+        
       `}
       {...props}
     >

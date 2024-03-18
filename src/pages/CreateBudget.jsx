@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
 import HeaderWithBackButton from '../components/HeaderWithBackButton';
-import Label from '../components/Label';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { createbudget } from '../services/api';
 import { useState } from 'react';
+import Label from '../components/Label';
 
 function CreateBudget() {
   const { register, handleSubmit, reset } = useForm();
@@ -33,7 +33,7 @@ function CreateBudget() {
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
-      className='bg-blue-100 h-screen flex flex-col'
+      className='h-screen flex flex-col addBudgetForm  bg-[length:150%_70%] bg-[45%_-40%] bg-no-repeat bg-[linear-gradient(0deg,#0077ffb4,#0077ff1e),url(../assets/note.jpg)]'
     >
       <div className='h-[30rem] p-10 flex-1 flex flex-col justify-between'>
         <HeaderWithBackButton title='Add Budget' />
@@ -47,22 +47,26 @@ function CreateBudget() {
         />
       </div>
       <div className='bg-light-100 overflow-y-auto p-10 rounded-[3.2rem_3.2rem_0_0]'>
-        <div className='flex flex-col gap-4'>
-          <Input
-            {...register('budgetAmount', { required: true })}
-            placeholder='Amount'
-            type='number'
-            inputMode='numeric'
-            disabled={isBudgetAdding}
-          />
-          <Input
-            {...register('budgetDescription')}
-            placeholder='Description'
-            disabled={isBudgetAdding}
-          />
+        <div className='flex flex-col gap-8'>
+          <div>
+            <Label variant='form'>Budget Amount</Label>
+            <Input
+              {...register('budgetAmount', { required: true })}
+              type='number'
+              inputMode='numeric'
+              disabled={isBudgetAdding}
+            />
+          </div>
+          <div>
+            <Label variant='form'>Budget Description</Label>
+            <Input
+              {...register('budgetDescription')}
+              disabled={isBudgetAdding}
+            />
+          </div>
           <Button
             type='submit'
-            style={{ marginTop: '1.5rem' }}
+            style={{ marginTop: '1rem' }}
             disabled={isBudgetAdding}
           >
             {isBudgetAdding ? 'Adding' : 'Add'}
