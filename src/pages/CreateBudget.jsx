@@ -31,21 +31,20 @@ function CreateBudget() {
   }
 
   return (
-    <div
+    <form
       onSubmit={handleSubmit(submitForm)}
-      className='bg-blue-100 h-screen text-light-100 flex flex-col'
+      className='bg-blue-100 h-screen flex flex-col'
     >
       <div className='h-[30rem] p-10 flex-1 flex flex-col justify-between'>
         <HeaderWithBackButton title='Add Budget' />
         <div>
           <Label variant='big' htmlFor='budgetName'>
-            Budget Namee
+            Budget Name
           </Label>
           <Input
             {...register('budgetName', { required: true })}
             id='budgetName'
-            placeholder='Start typing...'
-            autoComplete='off'
+            placeholder='Typing...'
             variant='hero'
             disabled={isBudgetAdding}
           />
@@ -74,7 +73,7 @@ function CreateBudget() {
           </Button>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 

@@ -8,7 +8,9 @@ export async function createbudget(budget) {
     .select();
 
   if (error) {
-    toast.error('Failed to create budget.');
+    error.message.includes('duplicate key value')
+      ? toast.error('Duplicate budget name')
+      : toast.error('Failed to create budget.');
     throw new Error(error?.message);
   }
 

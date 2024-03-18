@@ -9,7 +9,8 @@ const Input = forwardRef(function Input(
 
   switch (variant) {
     case 'hero':
-      activeStyles = 'bg-[transparent] text-title-lg font-semibold';
+      activeStyles =
+        'bg-[transparent] text-title-lg font-semibold text-light-100';
       break;
 
     case 'form':
@@ -27,6 +28,7 @@ const Input = forwardRef(function Input(
       className={`${baseStyles} ${activeStyles}`}
       type={type}
       placeholder={placeholder}
+      autoComplete='off'
       {...props}
     />
   );
