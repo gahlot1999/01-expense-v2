@@ -14,7 +14,7 @@ const Input = forwardRef(function Input(
 
     case 'form':
       activeStyles =
-        'text-regular-lg border-[.1rem] border-light-20 border-solid p-[.8rem_1rem] rounded-2xl';
+        'text-regular-lg text-dark-50 border-[.1rem] border-light-20 border-solid p-[.8rem_1rem] rounded-2xl';
       break;
 
     default:

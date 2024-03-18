@@ -29,11 +29,8 @@ function CreateBudget() {
       </div>
       <div className='bg-light-100 text-dark-100 flex-1 overflow-y-auto p-10 rounded-tl-[3.2rem] rounded-tr-[3.2rem]'>
         <form onSubmit={handleSubmit(submitForm)}>
-          <Input
-            placeholder='Budget Amount'
-            type='number'
-            inputMode='numeric'
-          />
+          <Input placeholder='Amount' type='number' inputMode='numeric' />
+          <Input placeholder='Description' />
         </form>
       </div>
     </div>
