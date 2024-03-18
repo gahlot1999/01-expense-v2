@@ -31,7 +31,7 @@ function CreateBudget() {
   }
 
   return (
-    <form
+    <div
       onSubmit={handleSubmit(submitForm)}
       className='bg-blue-100 h-screen text-light-100 flex flex-col'
     >
@@ -74,7 +74,7 @@ function CreateBudget() {
           </Button>
         </div>
       </div>
-    </form>
+    </div>
   );
 }
 
