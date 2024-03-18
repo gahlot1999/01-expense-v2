@@ -51,6 +51,13 @@ h6 {
   overflow-wrap: break-word;
 }
 
+select:disabled,
+input:disabled,
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 input {
   outline: none;
   border: none;

@@ -3,16 +3,38 @@ import HeaderWithBackButton from '../components/HeaderWithBackButton';
 import Label from '../components/Label';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import { createbudget } from '../services/api';
+import { useState } from 'react';
 
 function CreateBudget() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const [isBudgetAdding, setIsBudgetAdding] = useState(false);
 
-  function submitForm(data) {
-    console.log(data);
+  async function submitForm(data) {
+    const newBudget = [
+      {
+        budgetName: data.budgetName,
+        budgetAmount: data.budgetAmount,
+        budgetDescription: data.budgetDescription,
+      },
+    ];
+
+    try {
+      setIsBudgetAdding(true);
+      await createbudget(newBudget);
+      reset();
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setIsBudgetAdding(false);
+    }
   }
 
   return (
-    <div className='bg-blue-100 h-screen text-light-100 flex flex-col'>
+    <form
+      onSubmit={handleSubmit(submitForm)}
+      className='bg-blue-100 h-screen text-light-100 flex flex-col'
+    >
       <div className='h-[30rem] p-10 flex-1 flex flex-col justify-between'>
         <HeaderWithBackButton title='Add Budget' />
         <div>
@@ -25,20 +47,34 @@ function CreateBudget() {
             placeholder='Start typing...'
             autoComplete='off'
             variant='hero'
+            disabled={isBudgetAdding}
           />
         </div>
       </div>
       <div className='bg-light-100 overflow-y-auto p-10 rounded-[3.2rem_3.2rem_0_0]'>
-        <form
-          onSubmit={handleSubmit(submitForm)}
-          className='flex flex-col gap-4'
-        >
-          <Input placeholder='Amount' type='number' inputMode='numeric' />
-          <Input placeholder='Description' />
-          <Button style={{ marginTop: '1.5rem' }}>Add</Button>
-        </form>
+        <div className='flex flex-col gap-4'>
+          <Input
+            {...register('budgetAmount', { required: true })}
+            placeholder='Amount'
+            type='number'
+            inputMode='numeric'
+            disabled={isBudgetAdding}
+          />
+          <Input
+            {...register('budgetDescription')}
+            placeholder='Description'
+            disabled={isBudgetAdding}
+          />
+          <Button
+            type='submit'
+            style={{ marginTop: '1.5rem' }}
+            disabled={isBudgetAdding}
+          >
+            {isBudgetAdding ? 'Adding' : 'Add'}
+          </Button>
+        </div>
       </div>
-    </div>
+    </form>
   );
 }
 
