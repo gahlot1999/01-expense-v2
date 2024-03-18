@@ -1,5 +1,5 @@
 function Button({ variant = 'primary', children, onClick, ...props }) {
-  const baseStyles = 'py-5 rounded-[1.6rem]';
+  const baseStyles = 'py-5 rounded-[1.6rem] font-semibold text-small';
   let activeStyles = '';
 
   switch (variant) {

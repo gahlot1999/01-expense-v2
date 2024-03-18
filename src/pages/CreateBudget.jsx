@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import HeaderWithBackButton from '../components/HeaderWithBackButton';
 import Label from '../components/Label';
 import Input from '../components/Input';
+import Button from '../components/Button';
 
 function CreateBudget() {
   const { register, handleSubmit } = useForm();
@@ -12,7 +13,7 @@ function CreateBudget() {
 
   return (
     <div className='bg-blue-100 h-screen text-light-100 flex flex-col'>
-      <div className='h-[22rem] p-10 flex flex-col justify-between'>
+      <div className='h-[30rem] p-10 flex flex-col justify-between'>
         <HeaderWithBackButton title='Add Budget' />
         <div>
           <Label variant='big' htmlFor='budgetName'>
@@ -27,10 +28,14 @@ function CreateBudget() {
           />
         </div>
       </div>
-      <div className='bg-light-100 text-dark-100 flex-1 overflow-y-auto p-10 rounded-tl-[3.2rem] rounded-tr-[3.2rem]'>
-        <form onSubmit={handleSubmit(submitForm)}>
+      <div className='bg-light-100 flex-1 overflow-y-auto p-10 rounded-[3.2rem_3.2rem_0_0]'>
+        <form
+          onSubmit={handleSubmit(submitForm)}
+          className='flex flex-col gap-4'
+        >
           <Input placeholder='Amount' type='number' inputMode='numeric' />
           <Input placeholder='Description' />
+          <Button>Add</Button>
         </form>
       </div>
     </div>
