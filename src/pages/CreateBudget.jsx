@@ -37,18 +37,14 @@ function CreateBudget() {
     >
       <div className='h-[30rem] p-10 flex-1 flex flex-col justify-between'>
         <HeaderWithBackButton title='Add Budget' />
-        <div>
-          <Label variant='big' htmlFor='budgetName'>
-            Budget Name
-          </Label>
-          <Input
-            {...register('budgetName', { required: true })}
-            id='budgetName'
-            placeholder='Typing...'
-            variant='hero'
-            disabled={isBudgetAdding}
-          />
-        </div>
+        <Input
+          {...register('budgetName', { required: true })}
+          id='budgetName'
+          placeholder='Budget Name'
+          variant='hero'
+          autoFocus={true}
+          disabled={isBudgetAdding}
+        />
       </div>
       <div className='bg-light-100 overflow-y-auto p-10 rounded-[3.2rem_3.2rem_0_0]'>
         <div className='flex flex-col gap-4'>

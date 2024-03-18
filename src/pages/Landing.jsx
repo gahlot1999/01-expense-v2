@@ -67,8 +67,8 @@ function Landing() {
         </div>
       </div>
       <div className='flex flex-col gap-8 '>
-        <Button onClick={() => navigate('/createbudget')}>New Expense</Button>
-        <Button variant='secondary'>Old Expense</Button>
+        <Button onClick={() => navigate('/createbudget')}>New Budget</Button>
+        <Button variant='secondary'>Old Budget</Button>
       </div>
     </div>
   );
