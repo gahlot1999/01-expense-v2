@@ -39,7 +39,7 @@ function CreateBudget() {
         <HeaderWithBackButton title='Add Budget' />
         <div>
           <Label variant='big' htmlFor='budgetName'>
-            Budget Name
+            Budget Namee
           </Label>
           <Input
             {...register('budgetName', { required: true })}
