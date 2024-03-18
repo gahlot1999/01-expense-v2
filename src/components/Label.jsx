@@ -1,5 +1,6 @@
-function Label({ variant = 'form', children, htmlFor }) {
+function Label({ variant = 'form', children, mandatory = false, ...props }) {
   const baseStyles = '';
+  const mandatoryStyles = `after:content-['*'] after:ml-[.2rem] after:text-red-60`;
   let activeStyles = '';
 
   switch (variant) {
@@ -11,7 +12,14 @@ function Label({ variant = 'form', children, htmlFor }) {
       break;
   }
   return (
-    <label className={`${baseStyles} ${activeStyles}`} htmlFor={htmlFor}>
+    <label
+      className={`
+        ${baseStyles} 
+        ${activeStyles} 
+        ${mandatory && mandatoryStyles}
+      `}
+      {...props}
+    >
       {children}
     </label>
   );
