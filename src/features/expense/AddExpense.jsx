@@ -59,7 +59,7 @@ function AddExpense() {
               disabled={isExpenseAdding}
             >
               <option hidden></option>
-              <option value='Lic'>Lic</option>
+              <option value='Investment'>Investment</option>
               <option value='Credit Card Bill'>Credit Card Bill</option>
               <option value='Rent'>Rent</option>
               <option value='Emi'>Emi</option>

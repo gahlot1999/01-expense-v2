@@ -58,3 +58,15 @@ export async function getExpenses(id) {
 
   return expenses;
 }
+
+export async function deleteBudget(id) {
+  const { error } = await supabase
+    .from('budgets')
+    .delete()
+    .eq('id', Number(id));
+
+  if (error) {
+    console.error(error);
+    throw new Error('Budget could not be deleted');
+  }
+}

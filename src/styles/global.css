@@ -113,3 +113,33 @@ select {
     transform: rotate(360deg);
   }
 }
+
+.modal {
+  box-shadow: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.3);
+  padding: 3.2rem 4rem;
+}
+
+.modalBtn {
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  border-radius: 5px;
+  transform: translateX(0.8rem);
+  transition: all 0.2s;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.9rem;
+
+  &:hover {
+    background-color: #1f2937;
+  }
+
+  & svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    /* Sometimes we need both */
+    /* fill: #9ca3af;
+       stroke: #9ca3af; */
+    color: #9ca3af;
+  }
+}

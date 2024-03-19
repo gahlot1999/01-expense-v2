@@ -3,7 +3,7 @@ import { getBudgets } from '../services/api';
 
 export default function useGetBudget(id) {
   const { data: budgets, isLoading: isBudgetLoading } = useQuery({
-    queryKey: ['budgets'],
+    queryKey: ['budget', id],
     queryFn: getBudgets,
   });
 

@@ -5,7 +5,7 @@ function Button({
   additionalStyles,
   ...props
 }) {
-  const baseStyles = 'py-5 rounded-[1rem] font-semibold text-small';
+  const baseStyles = 'py-5 px-10 rounded-[1rem] font-semibold text-small';
   let activeStyles = '';
 
   switch (variant) {

@@ -3,7 +3,7 @@ import { getExpenses } from '../services/api';
 
 export default function useGetExpenses(id) {
   const { data: expenses, isLoading: isExpensesLoading } = useQuery({
-    queryKey: ['budget', id],
+    queryKey: ['expenses', id],
     queryFn: () => getExpenses(id),
   });
 

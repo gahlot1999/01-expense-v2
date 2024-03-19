@@ -9,14 +9,17 @@ export default function useAddBudget(reset) {
 
   const { status: budgetAddingStatus, mutate: createBudget } = useMutation({
     mutationFn: addBudgetApi,
-    onSuccess: () => {
+
+    onSuccess: (data) => {
       toast.success('Budget created');
       queryClient.invalidateQueries({ queryKey: ['budgets'] });
-      navigate('/budgets', { replace: true });
+      navigate(`/budgets/${data[0].id}`, { replace: true });
     },
+
     onError: (err) => {
       toast.error(err.message);
     },
+
     onSettled: () => {
       reset();
     },

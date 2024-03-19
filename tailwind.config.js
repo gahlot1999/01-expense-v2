@@ -56,6 +56,9 @@ export default {
       height: {
         screen: '100dvh',
       },
+      boxShadow: {
+        sm: 'rgba(149, 157, 165, 0.2) 0px 2px 6px',
+      },
     },
   },
   plugins: [],
