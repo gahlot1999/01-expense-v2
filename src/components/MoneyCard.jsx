@@ -2,7 +2,7 @@ import { capitalizeFirstLetter, formatCurrency } from '../utils/helpers';
 import incomeIcon from '../assets/income.png';
 import expenseIcon from '../assets/expense.png';
 
-function MoneyCard({ variant }) {
+function MoneyCard({ variant, amount }) {
   const isIncome = variant === 'income';
   return (
     <div
@@ -19,7 +19,7 @@ function MoneyCard({ variant }) {
           {capitalizeFirstLetter(variant)}
         </p>
         <p className='text-regular-lg text-light-100 font-bold'>
-          {formatCurrency(43000)}
+          {formatCurrency(amount || 0)}
         </p>
       </div>
     </div>

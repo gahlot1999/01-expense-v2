@@ -73,6 +73,24 @@ input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+select {
+  outline: none;
+  appearance: none;
+  background-image: url(../assets/arrow-down-2.png);
+  background-size: 2.2rem;
+  background-position: 97%;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+  width: 100%;
+  font-size: 1.6rem;
+  color: #464a4d;
+  border: 1px solid #e3e5e5;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  margin-top: 0.2rem;
+}
+
 /* #endregion CSS RESET END */
 
 .spinner {

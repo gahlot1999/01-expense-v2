@@ -1,6 +1,20 @@
 import supabase from './Supabase';
 
-export async function createBudget(budget) {
+export async function addExpense(expense) {
+  const { data: response, error } = await supabase
+    .from('expenses')
+    .insert(expense)
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error('Expense could not be added');
+  }
+
+  return response;
+}
+
+export async function addBudget(budget) {
   const { data: response, error } = await supabase
     .from('budgets')
     .insert(budget)
@@ -29,4 +43,18 @@ export async function getBudgets() {
   }
 
   return budgets;
+}
+
+export async function getExpenses(id) {
+  let { data: expenses, error } = await supabase
+    .from('expenses')
+    .select('*')
+    .eq('budgetId', id);
+
+  if (error) {
+    console.error(error);
+    throw new Error('Expenses could not be loaded');
+  }
+
+  return expenses;
 }
