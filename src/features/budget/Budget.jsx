@@ -11,7 +11,7 @@ function Budget() {
     <>
       <div className='h-screen'>
         <div className='bg-gradient-to-b from-[#FFF6E5] to-[#fefbf6d8] rounded-[0_0_2.5rem_2.5rem]'>
-          <HeaderWithBackButton variant='black' title='Krtika - March'>
+          <HeaderWithBackButton variant='black' title='Kritika - March'>
             <div className='flex justify-end gap-3'>
               <img src={editIcon} alt='edit icon' className='cursor-pointer' />
               <img
@@ -21,7 +21,7 @@ function Budget() {
               />
             </div>
           </HeaderWithBackButton>
-          <div className='p-10 pt-0 flex items-center justify-between gap-8'>
+          <div className='p-10 pt-0 flex items-center justify-center gap-4'>
             <MoneyCard variant='income' />
             <MoneyCard variant='expense' />
           </div>

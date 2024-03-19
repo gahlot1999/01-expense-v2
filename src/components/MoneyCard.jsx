@@ -7,7 +7,7 @@ function MoneyCard({ variant }) {
   return (
     <div
       className={`
-      flex items-center gap-4 p-5 rounded-[2.4rem]
+      flex items-center gap-4 p-7 rounded-[2.4rem]
       ${isIncome ? 'bg-green-100' : 'bg-red-100'}
       `}
     >
