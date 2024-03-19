@@ -1,33 +1,44 @@
 import { useForm } from 'react-hook-form';
-import HeaderWithBackButton from '../components/HeaderWithBackButton';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import { createbudget } from '../services/api';
-import { useState } from 'react';
-import Label from '../components/Label';
+import HeaderWithBackButton from '../../components/HeaderWithBackButton';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import { createBudget as createBudgetApi } from '../../services/api';
+import Label from '../../components/Label';
+import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
-function CreateBudget() {
+function AddBudget() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
-  const [isBudgetAdding, setIsBudgetAdding] = useState(false);
 
-  async function submitForm(data) {
-    const newBudget = [
+  const { status: budgetAddingStatus, mutate: createBudget } = useMutation({
+    mutationFn: createBudgetApi,
+    onSuccess: () => {
+      toast.success('Budget created');
+      queryClient.invalidateQueries({ queryKey: ['budgets'] });
+      navigate('/budgets', { replace: true });
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+    onSettled: () => {
+      reset();
+    },
+  });
+
+  const isBudgetAdding = budgetAddingStatus === 'pending';
+
+  function submitForm(data) {
+    const newBudgetObj = [
       {
         budgetName: data.budgetName,
         budgetAmount: data.budgetAmount,
         budgetDescription: data.budgetDescription,
       },
     ];
-
-    try {
-      setIsBudgetAdding(true);
-      await createbudget(newBudget);
-      reset();
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setIsBudgetAdding(false);
-    }
+    createBudget(newBudgetObj);
   }
 
   // bg-[length:150%_70%] bg-[45%_-40%] bg-no-repeat bg-[linear-gradient(0deg,#0077ffb4,#0077ff1e),url(../assets/note.jpg)]
@@ -37,15 +48,15 @@ function CreateBudget() {
       onSubmit={handleSubmit(submitForm)}
       className='bg-blue-100 h-screen flex flex-col'
     >
-      <div className='h-[30rem] p-10 flex-1 flex flex-col justify-between'>
+      <div className='h-[30rem] flex-1 flex flex-col justify-between'>
         <HeaderWithBackButton title='Add Budget' />
         <Input
           {...register('budgetName', { required: true })}
           id='budgetName'
           placeholder='Budget Name'
           variant='hero'
-          autoFocus={true}
           disabled={isBudgetAdding}
+          style={{ padding: '2.5rem' }}
         />
       </div>
       <div className='bg-light-100 overflow-y-auto p-10 rounded-[3.2rem_3.2rem_0_0]'>
@@ -79,4 +90,4 @@ function CreateBudget() {
   );
 }
 
-export default CreateBudget;
+export default AddBudget;

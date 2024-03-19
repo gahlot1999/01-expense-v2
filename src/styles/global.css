@@ -74,3 +74,24 @@ input[type='number'] {
   appearance: textfield;
 }
 /* #endregion CSS RESET END */
+
+.spinner {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 999px;
+  border: 0.5rem solid #7f3dff;
+  border-right: 0.5rem solid #fff;
+  border-left: 0.5rem solid #fff;
+  background-color: transparent;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

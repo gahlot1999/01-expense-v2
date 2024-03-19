@@ -1,18 +1,32 @@
-import toast from 'react-hot-toast';
 import supabase from './Supabase';
 
-export async function createbudget(budget) {
-  const { data, error } = await supabase
+export async function createBudget(budget) {
+  const { data: response, error } = await supabase
     .from('budgets')
     .insert(budget)
     .select();
 
   if (error) {
-    error.message.includes('duplicate key value')
-      ? toast.error('Duplicate budget name')
-      : toast.error('Failed to create budget.');
-    throw new Error(error?.message);
+    console.error(error);
+    if (error.message.includes('duplicate key value')) {
+      throw new Error('Duplicate budget name');
+    }
+    throw new Error('Budget could not be created');
   }
 
-  if (!error && data) toast.success('Budget created successfully');
+  return response;
+}
+
+export async function getBudgets() {
+  const { data: budgets, error } = await supabase
+    .from('budgets')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error(error);
+    throw new Error('Budgets could not be loaded');
+  }
+
+  return budgets;
 }
