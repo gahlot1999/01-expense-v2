@@ -2,6 +2,8 @@ export function formatCurrency(value) {
   return new Intl.NumberFormat('en', {
     style: 'currency',
     currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(value);
 }
 
@@ -13,4 +15,8 @@ export function formatDate(dateStr) {
     hour: '2-digit',
     minute: '2-digit',
   }).format(new Date(dateStr));
+}
+
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
