@@ -1,29 +1,32 @@
-import { formatCurrency, formatDate } from '../../utils/helpers';
+import { useParams } from 'react-router-dom';
+import HeaderWithBackButton from '../../components/HeaderWithBackButton';
+import deleteIcon from '../../assets/trash.svg';
+import editIcon from '../../assets/edit.svg';
+import MoneyCard from '../../components/MoneyCard';
 
-function Budget({ budgets }) {
+function Budget() {
+  const { id: budgetId } = useParams();
+
   return (
     <>
-      {budgets.map((budget) => (
-        <div key={budget.id} className='flex flex-col'>
-          <div className='border border-dark-25/30 rounded-[1rem_0_1rem_0] flex items-center justify-between gap-4 p-4 relative'>
-            <div>
-              <p className='text-dark-100 font-semibold text-small'>
-                {budget.budgetName}
-              </p>
-              <p className='break-all text-dark-50 text-extra-tiny'>
-                {budget.budgetDescription || `${budget.budgetName} budget`}
-              </p>
+      <div className='h-screen'>
+        <div className='bg-gradient-to-b from-[#FFF6E5] to-[#fefbf6d8] h-80 rounded-[0_0_2.5rem_2.5rem]'>
+          <HeaderWithBackButton variant='black' title='Krtika - March'>
+            <div className='flex justify-end gap-3'>
+              <img src={editIcon} alt='edit icon' className='cursor-pointer' />
+              <img
+                src={deleteIcon}
+                alt='delete icon'
+                className='cursor-pointer'
+              />
             </div>
-            <p className='bg-green-100 p-[.4rem_1rem] rounded-lg text-extra-tiny font-semibold text-light-100'>
-              {formatCurrency(budget.budgetAmount)}
-            </p>
+          </HeaderWithBackButton>
+          <div className='p-10'>
+            <MoneyCard variant='income' />
+            <MoneyCard variant='expense' />
           </div>
-
-          <p className='block ml-auto text-extra-tiny text-dark-50/60 italic'>
-            {formatDate(budget.created_at)}
-          </p>
         </div>
-      ))}
+      </div>
     </>
   );
 }

@@ -1,19 +1,26 @@
 import { useNavigate } from 'react-router-dom';
-import backBtn from '../assets/arrow-left.png';
+import backBtnBlack from '../assets/arrow-left-black.png';
+import backBtnWhite from '../assets/arrow-left-white.png';
 
-function HeaderWithBackButton({ title }) {
+function HeaderWithBackButton({ title, variant = 'white', children }) {
   const navigate = useNavigate();
+
   return (
-    <div className='relative p-10'>
+    <div className='p-10 flex items-center justify-between'>
       <img
-        src={backBtn}
+        src={variant === 'black' ? backBtnBlack : backBtnWhite}
         alt='back button icon'
-        className='w-[2.2rem] absolute top-[50%] translate-y-[-50%] cursor-pointer'
+        className='w-[2.2rem] cursor-pointer'
         onClick={() => navigate(-1)}
       />
-      <p className='text-light-100 text-title-sm text-center font-semibold'>
+      <p
+        className={`${
+          variant === 'black' ? 'text-dark-75' : 'text-light-100'
+        } text-title-sm text-center font-semibold`}
+      >
         {title}
       </p>
+      <span className='basis-[2.2rem]'>{children}</span>
     </div>
   );
 }

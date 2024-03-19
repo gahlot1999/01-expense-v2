@@ -2,32 +2,12 @@ import { useForm } from 'react-hook-form';
 import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { createBudget as createBudgetApi } from '../../services/api';
 import Label from '../../components/Label';
-import { useNavigate } from 'react-router-dom';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
+import useAddBudget from '../../hooks/useAddBudget';
 
 function AddBudget() {
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
-
-  const { status: budgetAddingStatus, mutate: createBudget } = useMutation({
-    mutationFn: createBudgetApi,
-    onSuccess: () => {
-      toast.success('Budget created');
-      queryClient.invalidateQueries({ queryKey: ['budgets'] });
-      navigate('/budgets', { replace: true });
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
-    onSettled: () => {
-      reset();
-    },
-  });
-
+  const { createBudget, budgetAddingStatus } = useAddBudget(reset);
   const isBudgetAdding = budgetAddingStatus === 'pending';
 
   function submitForm(data) {
@@ -40,8 +20,6 @@ function AddBudget() {
     ];
     createBudget(newBudgetObj);
   }
-
-  // bg-[length:150%_70%] bg-[45%_-40%] bg-no-repeat bg-[linear-gradient(0deg,#0077ffb4,#0077ff1e),url(../assets/note.jpg)]
 
   return (
     <form
