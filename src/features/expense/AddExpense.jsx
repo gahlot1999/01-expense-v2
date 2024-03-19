@@ -39,7 +39,6 @@ function AddExpense() {
             <Label variant='form'>Expense Name</Label>
             <Input
               {...register('expenseName', { required: true })}
-              inputMode='numeric'
               disabled={isExpenseAdding}
             />
           </div>
