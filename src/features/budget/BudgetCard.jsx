@@ -5,8 +5,7 @@ function BudgetCard({ budgets }) {
   const navigate = useNavigate();
 
   function handleBudgetClick(budgetId) {
-    const budgetInfo = budgets.find((el) => el.id === budgetId);
-    navigate(`${budgetId}`, { state: { budgetInfo } });
+    navigate(`${budgetId}`);
   }
 
   return (

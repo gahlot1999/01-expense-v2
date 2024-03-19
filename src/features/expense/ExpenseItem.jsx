@@ -18,8 +18,20 @@ function ExpenseItem({ expenses }) {
           </div>
           <p className='font-semibold'>{formatCurrency(exp.expenseAmount)}</p>
           <div className='flex items-center justify-self-end gap-2'>
-            <img src={editIcon} alt='edit icon' height='20' width='20' />
-            <img src={deleteIcon} alt='delete icon' height='20' width='20' />
+            <img
+              src={editIcon}
+              alt='edit icon'
+              className='cursor-pointer'
+              height='20'
+              width='20'
+            />
+            <img
+              src={deleteIcon}
+              alt='delete icon'
+              className='cursor-pointer'
+              height='20'
+              width='20'
+            />
           </div>
         </div>
       ))}

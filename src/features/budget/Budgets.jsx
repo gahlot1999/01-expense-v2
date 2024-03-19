@@ -20,12 +20,10 @@ function Budgets() {
         {budgets && budgets.length > 0 && <BudgetCard budgets={budgets} />}
 
         {budgets && budgets.length === 0 && (
-          <div className='h-full grid items-center text-center'>
-            <Message>
-              You have no budgets. Tap on{' '}
-              <span className='font-bold'>Add new budget</span> to get started.
-            </Message>
-          </div>
+          <Message>
+            You have no budgets. Tap on{' '}
+            <span className='font-bold'>Add new budget</span> to get started.
+          </Message>
         )}
       </div>
 

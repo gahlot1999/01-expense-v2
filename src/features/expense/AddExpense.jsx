@@ -3,11 +3,13 @@ import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Label from '../../components/Label';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import useAddExpense from '../../hooks/useAddExpense';
 
 function AddExpense() {
   const { id } = useParams();
+  const location = useLocation();
+  const budgetName = location.state.budgetName;
   const { register, handleSubmit, reset } = useForm();
   const { addExpense, expenseAddingStatus } = useAddExpense(reset);
   const isExpenseAdding = expenseAddingStatus === 'pending';
@@ -23,8 +25,7 @@ function AddExpense() {
         <HeaderWithBackButton title='Add Expense' />
         <Input
           variant='hero'
-          // TODO: Get name from state of react router
-          value='Kritika - March'
+          value={budgetName}
           style={{ padding: '2.5rem' }}
           readOnly
         />
