@@ -4,7 +4,7 @@ import backBtn from '../assets/arrow-left.png';
 function HeaderWithBackButton({ title }) {
   const navigate = useNavigate();
   return (
-    <div className='relative'>
+    <div className='relative p-10'>
       <img
         src={backBtn}
         alt='back button icon'

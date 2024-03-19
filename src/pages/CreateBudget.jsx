@@ -30,10 +30,12 @@ function CreateBudget() {
     }
   }
 
+  // bg-[length:150%_70%] bg-[45%_-40%] bg-no-repeat bg-[linear-gradient(0deg,#0077ffb4,#0077ff1e),url(../assets/note.jpg)]
+
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
-      className='h-screen flex flex-col addBudgetForm  bg-[length:150%_70%] bg-[45%_-40%] bg-no-repeat bg-[linear-gradient(0deg,#0077ffb4,#0077ff1e),url(../assets/note.jpg)]'
+      className='bg-blue-100 h-screen flex flex-col'
     >
       <div className='h-[30rem] p-10 flex-1 flex flex-col justify-between'>
         <HeaderWithBackButton title='Add Budget' />

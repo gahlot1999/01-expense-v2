@@ -6,6 +6,7 @@ export default {
       sans: ['Inter', 'sans-serif'],
     },
     fontSize: {
+      'extra-tiny': '1.1rem',
       tiny: '1.2rem',
       small: '1.3rem',
       'regular-sm': '1.4rem',
