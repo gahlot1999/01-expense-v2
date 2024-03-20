@@ -9,7 +9,7 @@ export default function useDeleteBudget(setIsConfirmDeleteModalOpen) {
   const { mutate: deleteBudget, status: isBudgetDeleting } = useMutation({
     mutationFn: deleteBudgetApi,
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({ queryKey: 'budgets' });
       toast.success('Budget deleted');
       setIsConfirmDeleteModalOpen(false);
       navigate(-1, { replace: true });

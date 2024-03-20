@@ -1,8 +1,18 @@
 import { formatCurrency } from '../../utils/helpers';
 import deleteIcon from '../../assets/trash.svg';
 import editIcon from '../../assets/edit.svg';
+import { useState } from 'react';
+import ConfirmDelete from '../../components/ConfirmDelete';
+import useDeleteExpense from '../../hooks/useDeleteExpense';
 
 function ExpenseItem({ expenses }) {
+  const [selectedExpenseId, setSelectedExpenseId] = useState(null);
+  const [isConfirmDeleteExpenseOpen, setIsConfirmDeleteExpenseOpen] =
+    useState(false);
+
+  const { deleteExpense, isExpenseDeleting } = useDeleteExpense(
+    setIsConfirmDeleteExpenseOpen,
+  );
   return (
     <>
       {expenses.map((exp) => (
@@ -27,6 +37,10 @@ function ExpenseItem({ expenses }) {
             />
             <img
               src={deleteIcon}
+              onClick={() => {
+                setSelectedExpenseId(exp.id);
+                setIsConfirmDeleteExpenseOpen(true);
+              }}
               alt='delete icon'
               className='cursor-pointer'
               height='20'
@@ -35,6 +49,13 @@ function ExpenseItem({ expenses }) {
           </div>
         </div>
       ))}
+
+      <ConfirmDelete
+        isOpen={isConfirmDeleteExpenseOpen}
+        onClose={() => setIsConfirmDeleteExpenseOpen(false)}
+        processing={isExpenseDeleting}
+        onConfirm={() => deleteExpense(selectedExpenseId)}
+      />
     </>
   );
 }

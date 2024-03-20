@@ -12,6 +12,7 @@ import useGetBudget from '../../hooks/useGetBudget';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import { useState } from 'react';
 import useDeleteBudget from '../../hooks/useDeleteBudget';
+import Modal from '../../components/Modal';
 
 function Budget() {
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =

@@ -1,13 +1,21 @@
-function Spinner({ h = 3, w = 3 }) {
-  return <span className={`spinner h-[${h}rem] w-[${w}rem]`}></span>;
+function Spinner() {
+  return <span className='spinner h-[3rem] w-[3rem]'></span>;
 }
 
-function FullPageSpinner({ h = 3, w = 3 }) {
+function FullPageSpinner() {
   return (
     <div className='h-full grid items-center justify-center'>
-      <Spinner h={h} w={w} />
+      <span className='spinner h-[3rem] w-[3rem]'></span>
     </div>
   );
 }
 
-export { Spinner, FullPageSpinner };
+function ButtonSpinner() {
+  return (
+    <div className='h-full grid items-center justify-center'>
+      <span className='spinner h-[2rem] w-[2rem]'></span>
+    </div>
+  );
+}
+
+export { Spinner, FullPageSpinner, ButtonSpinner };

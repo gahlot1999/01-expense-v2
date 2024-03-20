@@ -1,5 +1,6 @@
 import Button from './Button';
 import Modal from './Modal';
+import { ButtonSpinner } from './Spinner';
 
 function ConfirmDelete(props) {
   const { isOpen, onClose, onConfirm, processing } = props;
@@ -11,10 +12,10 @@ function ConfirmDelete(props) {
         <div className='text-center w-[80vw]'>
           <div>
             <p className='text-title-sm leading-9 font-semibold text-dark-75 mb-4'>
-              Remove this budget?
+              Are you sure?
             </p>
             <p className='text-regular-sm text-dark-25 leading-7 mb-8'>
-              Are you sure do you wanna remove this budget?
+              You won&apos;t be able to revert this!
             </p>
           </div>
           <div className='flex items-center justify-center gap-6'>
@@ -22,7 +23,7 @@ function ConfirmDelete(props) {
               No
             </Button>
             <Button onClick={onConfirm} disabled={isDeleting}>
-              Yes
+              {isDeleting ? <ButtonSpinner /> : 'Yes'}
             </Button>
           </div>
         </div>

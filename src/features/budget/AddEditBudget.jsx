@@ -6,7 +6,7 @@ import Label from '../../components/Label';
 import useAddBudget from '../../hooks/useAddBudget';
 import useUpdateBudget from '../../hooks/useUpdateBudget';
 import { useLocation } from 'react-router-dom';
-import { FullPageSpinner } from '../../components/Spinner';
+import { ButtonSpinner } from '../../components/Spinner';
 
 function AddEditBudget() {
   const location = useLocation();
@@ -87,13 +87,7 @@ function AddEditBudget() {
             style={{ marginTop: '1rem' }}
             disabled={isProcessing || !isDirty}
           >
-            {isProcessing ? (
-              <FullPageSpinner h={2} w={2} />
-            ) : inEditMode ? (
-              'Update'
-            ) : (
-              'Add'
-            )}
+            {isProcessing ? <ButtonSpinner /> : inEditMode ? 'Update' : 'Add'}
           </Button>
         </div>
       </div>

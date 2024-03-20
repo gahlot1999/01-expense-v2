@@ -5,17 +5,6 @@ export default {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
     },
-    fontSize: {
-      'extra-tiny': '1.1rem',
-      tiny: '1.2rem',
-      small: '1.3rem',
-      'regular-sm': '1.4rem',
-      'regular-lg': '1.6rem',
-      'title-sm': '1.8rem',
-      'title-md': '2.4rem',
-      'title-lg': '3.2rem',
-      'title-main': '6.4rem',
-    },
     colors: {
       'dark-25': '#7A7E80',
       'dark-50': '#464A4D',
@@ -53,6 +42,17 @@ export default {
       'blue-100': '#0077FF',
     },
     extend: {
+      fontSize: {
+        'extra-tiny': '1.1rem',
+        tiny: '1.2rem',
+        small: '1.3rem',
+        'regular-sm': '1.4rem',
+        'regular-lg': '1.6rem',
+        'title-sm': '1.8rem',
+        'title-md': '2.4rem',
+        'title-lg': '3.2rem',
+        'title-main': '6.4rem',
+      },
       height: {
         screen: '100dvh',
       },

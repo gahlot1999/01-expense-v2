@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import Label from '../../components/Label';
 import { useLocation, useParams } from 'react-router-dom';
 import useAddExpense from '../../hooks/useAddExpense';
+import { ButtonSpinner } from '../../components/Spinner';
 
 function AddExpense() {
   const { id } = useParams();
@@ -69,7 +70,7 @@ function AddExpense() {
             style={{ marginTop: '1rem' }}
             disabled={isExpenseAdding}
           >
-            {isExpenseAdding ? 'Adding' : 'Add'}
+            {isExpenseAdding ? <ButtonSpinner /> : 'Add'}
           </Button>
         </form>
       </div>

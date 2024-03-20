@@ -14,6 +14,18 @@ export async function addExpense(expense) {
   return response;
 }
 
+export async function deleteExpense(id) {
+  const { error } = await supabase
+    .from('expenses')
+    .delete()
+    .eq('id', Number(id));
+
+  if (error) {
+    console.error(error);
+    throw new Error('Expense could not be deleted');
+  }
+}
+
 export async function addBudget(budget) {
   const { data: response, error } = await supabase
     .from('budgets')
