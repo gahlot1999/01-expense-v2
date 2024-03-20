@@ -4,6 +4,7 @@ import landingPageImg2 from '../../assets/landingPage2.png';
 import landingPageImg3 from '../../assets/landingPage3.png';
 import Button from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
+import configIcon from '../../assets/settings.svg';
 
 const carouselData = [
   {
@@ -41,7 +42,15 @@ function Landing() {
   }, []);
 
   return (
-    <div className='flex flex-col h-screen p-10'>
+    <div className='flex flex-col h-screen p-10 relative'>
+      <img
+        src={configIcon}
+        onClick={() => navigate('config')}
+        alt='config icon'
+        height={32}
+        width={32}
+        className='absolute right-8 top-8 cursor-pointer'
+      />
       <div className='flex flex-col items-center justify-center flex-1 gap-4 text-center'>
         <img src={activeItem.img} alt='carlousel image' className='w-[60%]' />
         <div className='grid grid-rows-[9rem_6rem_4rem] items-center justify-items-center'>
