@@ -2,25 +2,31 @@ import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import expenseCategoryIcon from '../../assets/category.svg';
 import predefinedExpensesIcon from '../../assets/expense-2.svg';
 
+import { useNavigate } from 'react-router-dom';
+
 const categories = [
   {
     title: 'Categories',
     icon: expenseCategoryIcon,
+    path: '/categories',
   },
-  { title: 'Predefined', icon: predefinedExpensesIcon },
+  { title: 'Predefined', icon: predefinedExpensesIcon, path: '/predefined  ' },
 ];
 
 function Config() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className='bg-yellow-100 rounded-[0_0_3.2rem_3.2rem]'>
-        <HeaderWithBackButton title='Configurations' />
+        <HeaderWithBackButton title='Configurations' navigateTo='/' />
       </div>
       <div className='mt-4 p-10 grid grid-cols-2 gap-4 justify-items-center items-center text-center'>
         {categories.map((cat) => (
           <div
             key={cat.title}
-            className='p-8 border-[.1rem] border-solid border-yellow-60 rounded-lg shadow-sm'
+            onClick={() => navigate(cat.path)}
+            className='p-8 cursor-pointer border-[.1rem] border-solid border-yellow-60 rounded-lg shadow-sm'
           >
             <img
               src={cat.icon}

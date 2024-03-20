@@ -126,3 +126,20 @@ export async function deleteBudget(id) {
     throw new Error('Budget could not be deleted');
   }
 }
+
+// #region CATEGORIES
+
+export async function getCategories() {
+  let { data: expenseCategories, error } = await supabase
+    .from('expenseCategories')
+    .select('*');
+
+  if (error) {
+    console.error(error);
+    throw new Error('Could not be get categories');
+  }
+
+  return expenseCategories;
+}
+
+// #endregion

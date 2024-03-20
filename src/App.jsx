@@ -8,6 +8,7 @@ import AddEditBudget from './features/budget/AddEditBudget';
 import Budget from './features/budget/Budget';
 import AddEditExpense from './features/expense/AddEditExpense';
 import Config from './features/config/Config';
+import CategoriesLanding from './features/config/categories/CategoriesLanding';
 
 function App() {
   const queryClient = new QueryClient();
@@ -18,13 +19,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Landing />} />
-          <Route path='/config' element={<Config />} />
-          <Route path='/createbudget' element={<AddEditBudget />} />
-          <Route path='/editbudget' element={<AddEditBudget />} />
-          <Route path='/budgets' element={<Budgets />} />
-          <Route path='/budgets/:id' element={<Budget />} />
-          <Route path='/budgets/:id/addexpense' element={<AddEditExpense />} />
-          <Route path='/budgets/:id/editexpense' element={<AddEditExpense />} />
+          <Route path='config' element={<Config />} />
+          <Route path='categories' element={<CategoriesLanding />} />
+          <Route path='createbudget' element={<AddEditBudget />} />
+          <Route path='editbudget' element={<AddEditBudget />} />
+          <Route path='budgets' element={<Budgets />} />
+          <Route path='budgets/:id' element={<Budget />} />
+          <Route path='budgets/:id/addexpense' element={<AddEditExpense />} />
+          <Route path='budgets/:id/editexpense' element={<AddEditExpense />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
