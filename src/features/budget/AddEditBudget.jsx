@@ -92,7 +92,7 @@ function AddEditBudget() {
             style={{ marginTop: '1rem' }}
             disabled={isProcessing || !isDirty}
           >
-            {isProcessing ? <ButtonSpinner /> : inEditMode ? 'Update' : 'Add'}
+            {isProcessing ? <ButtonSpinner /> : inEditMode ? 'Edit' : 'Add'}
           </Button>
         </div>
       </div>
