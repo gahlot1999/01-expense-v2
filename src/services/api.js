@@ -142,10 +142,10 @@ export async function getCategories() {
   return expenseCategories;
 }
 
-export async function addCategory() {
+export async function addCategory(category) {
   const { data, error } = await supabase
     .from('expenseCategories')
-    .insert([{ some_column: 'someValue', other_column: 'otherValue' }])
+    .insert(category)
     .select();
 
   if (error) {
