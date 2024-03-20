@@ -45,6 +45,21 @@ export async function getBudgets() {
   return budgets;
 }
 
+export async function updateBudget(updatedObject) {
+  const { data: response, error } = await supabase
+    .from('budgets')
+    .update(updatedObject)
+    .eq('id', Number(updatedObject.id))
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error('Budget could not be updated');
+  }
+
+  return response;
+}
+
 export async function getExpenses(id) {
   let { data: expenses, error } = await supabase
     .from('expenses')

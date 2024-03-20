@@ -4,11 +4,34 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Label from '../../components/Label';
 import useAddBudget from '../../hooks/useAddBudget';
+import useUpdateBudget from '../../hooks/useUpdateBudget';
+import { useLocation } from 'react-router-dom';
 
-function AddBudget() {
-  const { register, handleSubmit, reset } = useForm();
-  const { createBudget, budgetAddingStatus } = useAddBudget(reset);
-  const isBudgetAdding = budgetAddingStatus === 'pending';
+function AddEditBudget() {
+  const location = useLocation();
+  const inEditMode = location.pathname === '/editbudget';
+  const toBeEditedBudgetInfo = location.state?.budget;
+  const formValues = toBeEditedBudgetInfo
+    ? {
+        budgetName: toBeEditedBudgetInfo.budgetName,
+        budgetAmount: toBeEditedBudgetInfo.budgetAmount.toString(),
+        budgetDescription: toBeEditedBudgetInfo.budgetDescription,
+      }
+    : { budgetName: '', budgetAmount: null, budgetDescription: '' };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isDirty },
+  } = useForm({
+    values: formValues,
+    defaultValues: formValues,
+  });
+  const { createBudget, isBudgetAdding } = useAddBudget(reset);
+  const { updateBudget, isBudgetUpdating } = useUpdateBudget();
+
+  const isProcessing =
+    isBudgetAdding === 'pending' || isBudgetUpdating === 'pending';
 
   function submitForm(data) {
     const newBudgetObj = [
@@ -18,7 +41,10 @@ function AddBudget() {
         budgetDescription: data.budgetDescription,
       },
     ];
-    createBudget(newBudgetObj);
+
+    inEditMode
+      ? updateBudget({ ...newBudgetObj[0], id: toBeEditedBudgetInfo.id })
+      : createBudget(newBudgetObj);
   }
 
   return (
@@ -27,13 +53,15 @@ function AddBudget() {
       className='bg-blue-100 h-screen flex flex-col'
     >
       <div className='h-[30rem] flex-1 flex flex-col justify-between'>
-        <HeaderWithBackButton title='Add Budget' />
+        <HeaderWithBackButton
+          title={`${inEditMode ? 'Edit Budget' : 'Add Budget'}`}
+        />
         <Input
           {...register('budgetName', { required: true })}
           id='budgetName'
           placeholder='Budget Name'
           variant='hero'
-          disabled={isBudgetAdding}
+          disabled={isProcessing}
           style={{ padding: '2.5rem' }}
         />
       </div>
@@ -45,22 +73,20 @@ function AddBudget() {
               {...register('budgetAmount', { required: true })}
               type='number'
               inputMode='numeric'
-              disabled={isBudgetAdding}
+              disabled={isProcessing}
             />
           </div>
           <div>
             <Label variant='form'>Budget Description</Label>
-            <Input
-              {...register('budgetDescription')}
-              disabled={isBudgetAdding}
-            />
+            <Input {...register('budgetDescription')} disabled={isProcessing} />
           </div>
           <Button
             type='submit'
             style={{ marginTop: '1rem' }}
-            disabled={isBudgetAdding}
+            disabled={isProcessing || !isDirty}
           >
-            {isBudgetAdding ? 'Adding' : 'Add'}
+            {inEditMode ? 'Update' : 'Add'}
+            {/* {isProcessing ? 'Adding' : 'Add'} */}
           </Button>
         </div>
       </div>
@@ -68,4 +94,4 @@ function AddBudget() {
   );
 }
 
-export default AddBudget;
+export default AddEditBudget;

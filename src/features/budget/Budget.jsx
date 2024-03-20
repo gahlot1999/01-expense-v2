@@ -33,9 +33,17 @@ function Budget() {
     <>
       <div className='h-screen flex flex-col'>
         <div className='bg-gradient-to-b from-[#FFF6E5] to-[#fefbf6d8] rounded-[0_0_2.5rem_2.5rem]'>
-          <HeaderWithBackButton variant='black' title={budget?.budgetName}>
+          <HeaderWithBackButton
+            variant='black'
+            title={budget?.budgetName || 'Budget Name'}
+          >
             <div className='flex justify-end gap-3'>
-              <img src={editIcon} alt='edit icon' className='cursor-pointer' />
+              <img
+                onClick={() => navigate('/editbudget', { state: { budget } })}
+                src={editIcon}
+                alt='edit icon'
+                className='cursor-pointer'
+              />
               <img
                 src={deleteIcon}
                 alt='delete icon'

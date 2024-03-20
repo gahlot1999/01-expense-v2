@@ -8,7 +8,7 @@ function ConfirmDelete(props) {
   if (isOpen)
     return (
       <Modal>
-        <div className='text-center'>
+        <div className='text-center w-[80vw]'>
           <div>
             <p className='text-title-sm leading-9 font-semibold text-dark-75 mb-4'>
               Remove this budget?

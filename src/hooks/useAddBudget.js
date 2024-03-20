@@ -7,7 +7,7 @@ export default function useAddBudget(reset) {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { status: budgetAddingStatus, mutate: createBudget } = useMutation({
+  const { status: isBudgetAdding, mutate: createBudget } = useMutation({
     mutationFn: addBudgetApi,
 
     onSuccess: (data) => {
@@ -25,5 +25,5 @@ export default function useAddBudget(reset) {
     },
   });
 
-  return { budgetAddingStatus, createBudget };
+  return { isBudgetAdding, createBudget };
 }
