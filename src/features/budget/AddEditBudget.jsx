@@ -24,7 +24,7 @@ function AddEditBudget() {
     register,
     handleSubmit,
     reset,
-    formState: { isDirty },
+    formState: { isDirty, errors },
   } = useForm({
     values: formValues,
   });
@@ -60,8 +60,8 @@ function AddEditBudget() {
         />
         <Input
           {...register('budgetName', { required: true })}
-          id='budgetName'
-          placeholder='Budget Name'
+          errors={errors}
+          placeholder='Budget Name...'
           variant='hero'
           disabled={isProcessing}
           style={{ padding: '2.5rem' }}
@@ -73,6 +73,7 @@ function AddEditBudget() {
             <Label variant='form'>Budget Amount</Label>
             <Input
               {...register('budgetAmount', { required: true })}
+              errors={errors}
               type='number'
               inputMode='numeric'
               disabled={isProcessing}
@@ -80,7 +81,11 @@ function AddEditBudget() {
           </div>
           <div>
             <Label variant='form'>Budget Description</Label>
-            <Input {...register('budgetDescription')} disabled={isProcessing} />
+            <Input
+              {...register('budgetDescription')}
+              errors={errors}
+              disabled={isProcessing}
+            />
           </div>
           <Button
             type='submit'

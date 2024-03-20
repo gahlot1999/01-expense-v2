@@ -1,4 +1,4 @@
-import { useForm, useFormContext } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -6,26 +6,62 @@ import Label from '../../components/Label';
 import { useLocation, useParams } from 'react-router-dom';
 import useAddExpense from '../../hooks/useAddExpense';
 import { ButtonSpinner } from '../../components/Spinner';
+import useEditExpense from '../../hooks/useEditExpense';
 
-function AddExpense() {
-  const { id } = useParams();
+function AddEditExpense() {
+  const { id: budgetId } = useParams();
   const location = useLocation();
-  const budgetName = location.state.budgetName;
-  const { register, handleSubmit, reset } = useForm();
+  const budgetName = location.state?.budgetName;
+  const toBeEditedExpenseInfo = location.state?.expenseInfo;
+  const inEditMode = location.pathname.includes('/editexpense');
+
+  const formValues = inEditMode
+    ? {
+        expenseName: toBeEditedExpenseInfo.expenseName,
+        expenseAmount: toBeEditedExpenseInfo.expenseAmount.toString(),
+        expenseCategory: toBeEditedExpenseInfo.expenseCategory,
+      }
+    : {
+        expenseName: '',
+        expenseAmount: null,
+        expenseCategory: '',
+      };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isDirty, errors },
+  } = useForm({ values: formValues });
+
   const { addExpense, expenseAddingStatus } = useAddExpense(reset);
-  const isExpenseAdding = expenseAddingStatus === 'pending';
+  const { editExpense, isExpenseEditing } = useEditExpense();
+  const isProcessing =
+    expenseAddingStatus === 'pending' || isExpenseEditing === 'pending';
 
   function submitForm(data) {
-    const newExpenseObj = { budgetId: id, ...data };
+    if (inEditMode) {
+      const updatedExpenseObj = {
+        ...data,
+        budgetId: Number(budgetId),
+        id: toBeEditedExpenseInfo.id,
+      };
+      editExpense(updatedExpenseObj);
+      return;
+    }
+    const newExpenseObj = { budgetId, ...data };
     addExpense(newExpenseObj);
   }
 
   return (
     <div className='bg-red-100 h-screen flex flex-col'>
       <div className='h-[30rem] flex-1 flex flex-col justify-between'>
-        <HeaderWithBackButton title='Add Expense' />
+        <HeaderWithBackButton
+          title={`${inEditMode ? 'Edit Expense' : 'Add Expense'}`}
+        />
         <Input
           variant='hero'
+          errors={errors}
           value={budgetName}
           style={{ padding: '2.5rem' }}
           readOnly
@@ -40,23 +76,26 @@ function AddExpense() {
             <Label variant='form'>Expense Name</Label>
             <Input
               {...register('expenseName', { required: true })}
-              disabled={isExpenseAdding}
+              errors={errors}
+              disabled={isProcessing}
             />
           </div>
           <div>
             <Label variant='form'>Expense Amount</Label>
             <Input
               {...register('expenseAmount', { required: true })}
+              errors={errors}
               type='number'
               inputMode='numeric'
-              disabled={isExpenseAdding}
+              disabled={isProcessing}
             />
           </div>
           <div>
             <Label variant='form'>Expense Category</Label>
             <select
               {...register('expenseCategory', { required: true })}
-              disabled={isExpenseAdding}
+              disabled={isProcessing}
+              className={`${errors['expenseCategory'] && 'border-red-100'}`}
             >
               <option hidden></option>
               <option value='Investment'>Investment</option>
@@ -68,9 +107,9 @@ function AddExpense() {
           <Button
             type='submit'
             style={{ marginTop: '1rem' }}
-            disabled={isExpenseAdding}
+            disabled={isProcessing || !isDirty}
           >
-            {isExpenseAdding ? <ButtonSpinner /> : 'Add'}
+            {isProcessing ? <ButtonSpinner /> : inEditMode ? 'Update' : 'Add'}
           </Button>
         </form>
       </div>
@@ -78,4 +117,4 @@ function AddExpense() {
   );
 }
 
-export default AddExpense;
+export default AddEditExpense;

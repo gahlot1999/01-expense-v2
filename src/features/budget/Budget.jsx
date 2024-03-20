@@ -12,7 +12,6 @@ import useGetBudget from '../../hooks/useGetBudget';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import { useState } from 'react';
 import useDeleteBudget from '../../hooks/useDeleteBudget';
-import Modal from '../../components/Modal';
 
 function Budget() {
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
@@ -63,7 +62,7 @@ function Budget() {
           {isExpensesLoading ? (
             <FullPageSpinner />
           ) : expenses.length > 0 ? (
-            <ExpenseItem expenses={expenses} />
+            <ExpenseItem expenses={expenses} budgetName={budget?.budgetName} />
           ) : (
             <Message>
               You have no expenses. Tap on{' '}

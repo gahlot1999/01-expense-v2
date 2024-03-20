@@ -1,16 +1,19 @@
 import { forwardRef } from 'react';
 
 const Input = forwardRef(function Input(
-  { variant = 'form', type = 'text', placeholder, ...props },
+  { variant = 'form', type = 'text', placeholder, errors = {}, ...props },
   ref,
 ) {
+  const { name } = props;
   const baseStyles = 'w-full';
+  const errorStyles = 'border-red-100';
   let activeStyles = '';
 
   switch (variant) {
     case 'hero':
-      activeStyles =
-        'bg-[transparent] text-title-lg font-semibold text-light-100';
+      activeStyles = `bg-[transparent] text-title-lg font-semibold text-light-100 ${
+        errors[name] && 'placeholder:text-red-100'
+      }`;
       break;
 
     case 'form':
@@ -25,7 +28,11 @@ const Input = forwardRef(function Input(
   return (
     <input
       ref={ref}
-      className={`${baseStyles} ${activeStyles}`}
+      className={`
+        ${baseStyles} 
+        ${activeStyles} 
+        ${errors[name] && errorStyles}
+      `}
       type={type}
       placeholder={placeholder}
       autoComplete='off'

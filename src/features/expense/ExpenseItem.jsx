@@ -4,8 +4,10 @@ import editIcon from '../../assets/edit.svg';
 import { useState } from 'react';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import useDeleteExpense from '../../hooks/useDeleteExpense';
+import { useNavigate } from 'react-router-dom';
 
-function ExpenseItem({ expenses }) {
+function ExpenseItem({ expenses, budgetName }) {
+  const navigate = useNavigate();
   const [selectedExpenseId, setSelectedExpenseId] = useState(null);
   const [isConfirmDeleteExpenseOpen, setIsConfirmDeleteExpenseOpen] =
     useState(false);
@@ -30,6 +32,11 @@ function ExpenseItem({ expenses }) {
           <div className='flex items-center justify-self-end gap-2'>
             <img
               src={editIcon}
+              onClick={() =>
+                navigate('editexpense', {
+                  state: { budgetName, expenseInfo: exp },
+                })
+              }
               alt='edit icon'
               className='cursor-pointer'
               height='20'

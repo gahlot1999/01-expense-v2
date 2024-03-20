@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import AddEditBudget from './features/budget/AddEditBudget';
 import Budget from './features/budget/Budget';
-import AddExpense from './features/expense/AddExpense';
+import AddEditExpense from './features/expense/AddEditExpense';
 
 function App() {
   const queryClient = new QueryClient();
@@ -21,7 +21,8 @@ function App() {
           <Route path='/editbudget' element={<AddEditBudget />} />
           <Route path='/budgets' element={<Budgets />} />
           <Route path='/budgets/:id' element={<Budget />} />
-          <Route path='/budgets/:id/addexpense' element={<AddExpense />} />
+          <Route path='/budgets/:id/addexpense' element={<AddEditExpense />} />
+          <Route path='/budgets/:id/editexpense' element={<AddEditExpense />} />
         </Routes>
       </BrowserRouter>
       <Toaster />

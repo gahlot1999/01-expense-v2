@@ -14,6 +14,21 @@ export async function addExpense(expense) {
   return response;
 }
 
+export async function editExpense(updatedExpense) {
+  const { data, error } = await supabase
+    .from('expenses')
+    .update(updatedExpense)
+    .eq('id', Number(updatedExpense.id))
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error('Expense could not be updated');
+  }
+
+  return data;
+}
+
 export async function deleteExpense(id) {
   const { error } = await supabase
     .from('expenses')
@@ -55,6 +70,20 @@ export async function getBudgets() {
   }
 
   return budgets;
+}
+
+export async function getBudget(id) {
+  const { data: budget, error } = await supabase
+    .from('budgets')
+    .select('*')
+    .eq('id', Number(id));
+
+  if (error) {
+    console.error(error);
+    throw new Error('Budgets could not be loaded');
+  }
+
+  return budget;
 }
 
 export async function updateBudget(updatedObject) {
