@@ -6,11 +6,13 @@ import Label from '../../components/Label';
 import useAddBudget from '../../hooks/useAddBudget';
 import useUpdateBudget from '../../hooks/useUpdateBudget';
 import { useLocation } from 'react-router-dom';
+import { FullPageSpinner } from '../../components/Spinner';
 
 function AddEditBudget() {
   const location = useLocation();
   const inEditMode = location.pathname === '/editbudget';
   const toBeEditedBudgetInfo = location.state?.budget;
+
   const formValues = toBeEditedBudgetInfo
     ? {
         budgetName: toBeEditedBudgetInfo.budgetName,
@@ -25,8 +27,8 @@ function AddEditBudget() {
     formState: { isDirty },
   } = useForm({
     values: formValues,
-    defaultValues: formValues,
   });
+
   const { createBudget, isBudgetAdding } = useAddBudget(reset);
   const { updateBudget, isBudgetUpdating } = useUpdateBudget();
 
@@ -85,8 +87,13 @@ function AddEditBudget() {
             style={{ marginTop: '1rem' }}
             disabled={isProcessing || !isDirty}
           >
-            {inEditMode ? 'Update' : 'Add'}
-            {/* {isProcessing ? 'Adding' : 'Add'} */}
+            {isProcessing ? (
+              <FullPageSpinner h={2} w={2} />
+            ) : inEditMode ? (
+              'Update'
+            ) : (
+              'Add'
+            )}
           </Button>
         </div>
       </div>

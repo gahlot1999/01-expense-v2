@@ -14,7 +14,7 @@ function Budgets() {
   return (
     <>
       <div className='bg-violet-100 h-screen flex flex-col'>
-        <HeaderWithBackButton title='Budgets' />
+        <HeaderWithBackButton title='Budgets' navigateTo='/' />
 
         <div className='bg-light-100 rounded-[3.2rem_3.2rem_0_0] p-10 flex-1 overflow-y-auto flex flex-col gap-8'>
           {isBudgetsLoading && <FullPageSpinner />}

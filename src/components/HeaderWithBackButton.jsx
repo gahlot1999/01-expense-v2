@@ -2,7 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import backBtnBlack from '../assets/arrow-left-black.png';
 import backBtnWhite from '../assets/arrow-left-white.png';
 
-function HeaderWithBackButton({ title, variant = 'white', children }) {
+function HeaderWithBackButton({
+  title,
+  variant = 'white',
+  children,
+  navigateTo = -1,
+}) {
   const navigate = useNavigate();
 
   return (
@@ -11,7 +16,7 @@ function HeaderWithBackButton({ title, variant = 'white', children }) {
         src={variant === 'black' ? backBtnBlack : backBtnWhite}
         alt='back button icon'
         className='w-[2.2rem] cursor-pointer'
-        onClick={() => navigate(-1)}
+        onClick={() => navigate(navigateTo)}
       />
       <p
         className={`${

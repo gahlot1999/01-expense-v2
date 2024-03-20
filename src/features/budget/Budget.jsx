@@ -34,6 +34,7 @@ function Budget() {
       <div className='h-screen flex flex-col'>
         <div className='bg-gradient-to-b from-[#FFF6E5] to-[#fefbf6d8] rounded-[0_0_2.5rem_2.5rem]'>
           <HeaderWithBackButton
+            navigateTo='/budgets'
             variant='black'
             title={budget?.budgetName || 'Budget Name'}
           >
