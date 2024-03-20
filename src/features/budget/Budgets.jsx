@@ -8,7 +8,6 @@ import useGetBudgets from '../../hooks/useGetBudgets';
 
 function Budgets() {
   const navigate = useNavigate();
-
   const { budgets, isBudgetsLoading } = useGetBudgets();
 
   return (

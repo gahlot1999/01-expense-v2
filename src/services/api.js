@@ -142,4 +142,30 @@ export async function getCategories() {
   return expenseCategories;
 }
 
+export async function addCategory() {
+  const { data, error } = await supabase
+    .from('expenseCategories')
+    .insert([{ some_column: 'someValue', other_column: 'otherValue' }])
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error('Category could not be added');
+  }
+
+  return data;
+}
+
+export async function deleteCategory(id) {
+  const { error } = await supabase
+    .from('expenseCategories')
+    .delete()
+    .eq('id', Number(id));
+
+  if (error) {
+    console.error(error);
+    throw new Error('Category could not be deleted');
+  }
+}
+
 // #endregion

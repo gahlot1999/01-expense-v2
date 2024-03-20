@@ -8,7 +8,7 @@ import AddEditBudget from './features/budget/AddEditBudget';
 import Budget from './features/budget/Budget';
 import AddEditExpense from './features/expense/AddEditExpense';
 import Config from './features/config/Config';
-import CategoriesLanding from './features/config/categories/CategoriesLanding';
+import Categories from './features/config/categories/Categories';
 
 function App() {
   const queryClient = new QueryClient();
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='config' element={<Config />} />
-          <Route path='categories' element={<CategoriesLanding />} />
+          <Route path='categories' element={<Categories />} />
           <Route path='createbudget' element={<AddEditBudget />} />
           <Route path='editbudget' element={<AddEditBudget />} />
           <Route path='budgets' element={<Budgets />} />
