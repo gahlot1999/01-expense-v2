@@ -4,14 +4,14 @@ import deleteIcon from '../../assets/trash.svg';
 import editIcon from '../../assets/edit.svg';
 import MoneyCard from '../../components/MoneyCard';
 import Button from '../../components/Button';
-import useGetExpenses from '../../hooks/useGetExpenses';
+import useGetExpenses from '../expense/useGetExpenses';
 import ExpenseItem from '../expense/ExpenseItem';
 import { FullPageSpinner, Spinner } from '../../components/Spinner';
 import Message from '../../components/Message';
-import useGetBudget from '../../hooks/useGetBudget';
+import useGetBudget from './useGetBudget';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import { useState } from 'react';
-import useDeleteBudget from '../../hooks/useDeleteBudget';
+import useDeleteBudget from './useDeleteBudget';
 
 function Budget() {
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =

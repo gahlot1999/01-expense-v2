@@ -3,8 +3,10 @@ import Input from '../../../components/Input';
 import Label from '../../../components/Label';
 import Modal from '../../../components/Modal';
 import { ButtonSpinner } from '../../../components/Spinner';
+import useUserId from '../../../hooks/useUserId';
 
 function AddCategoryForm(props) {
+  const uid = useUserId();
   const {
     isOpen,
     onClose,
@@ -20,7 +22,11 @@ function AddCategoryForm(props) {
 
   function submitAddCategoryForm(data) {
     const category = [
-      { categoryValue: data.categoryName, categoryLabel: data.categoryName },
+      {
+        categoryValue: data.categoryName,
+        categoryLabel: data.categoryName,
+        uid,
+      },
     ];
     onConfirm(category);
   }

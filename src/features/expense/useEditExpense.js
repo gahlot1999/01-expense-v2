@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { editExpense as editExpenseApi } from '../services/api';
+import { editExpense as editExpenseApi } from '../../services/api';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 

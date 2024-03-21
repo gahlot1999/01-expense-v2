@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteExpense as deleteExpenseApi } from '../services/api';
+import { deleteExpense as deleteExpenseApi } from '../../services/api';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getBudget } from '../services/api';
+import { getBudget } from '../../services/api';
 
 export default function useGetBudget(id) {
   const { data: budget, isLoading: isBudgetLoading } = useQuery({

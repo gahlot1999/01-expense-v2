@@ -7,8 +7,10 @@ import Category from './Category';
 import useGetCategories from './useGetCategories';
 import useAddCategory from './useAddCategory';
 import { useForm } from 'react-hook-form';
+import useUserId from '../../../hooks/useUserId';
 
 function Categories() {
+  const uid = useUserId();
   const {
     register,
     formState: { errors, isDirty },
@@ -16,7 +18,8 @@ function Categories() {
     reset,
   } = useForm({ values: { categoryName: '' } });
 
-  const { expenseCategories, isExpenseCategoriesLoading } = useGetCategories();
+  const { expenseCategories, isExpenseCategoriesLoading } =
+    useGetCategories(uid);
   const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
   const { addCategory, isCategoryAdding } = useAddCategory(
     setIsAddCategoryModalOpen,

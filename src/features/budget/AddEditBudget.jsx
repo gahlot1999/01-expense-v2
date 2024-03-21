@@ -3,8 +3,8 @@ import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Label from '../../components/Label';
-import useAddBudget from '../../hooks/useAddBudget';
-import useUpdateBudget from '../../hooks/useUpdateBudget';
+import useAddBudget from './useAddBudget';
+import useUpdateBudget from './useUpdateBudget';
 import { useLocation } from 'react-router-dom';
 import { ButtonSpinner } from '../../components/Spinner';
 

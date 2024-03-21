@@ -127,10 +127,11 @@ export async function deleteBudget(id) {
 
 // #region CATEGORIES
 
-export async function getCategories() {
+export async function getCategories(uid) {
   let { data: expenseCategories, error } = await supabase
     .from('expenseCategories')
-    .select('*');
+    .select('*')
+    .eq('uid', uid);
 
   if (error) {
     console.error(error);

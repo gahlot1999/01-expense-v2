@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { updateBudget as updateBudgetApi } from '../services/api';
+import { updateBudget as updateBudgetApi } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 

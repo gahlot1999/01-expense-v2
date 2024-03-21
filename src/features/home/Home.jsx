@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import configIcon from '../../assets/settings.svg';
 import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
+import supabase from '../../services/Supabase';
 
 const carouselData = [
   {
@@ -52,6 +53,14 @@ function Home() {
     return () => clearInterval(changeCaruselItem);
   }, []);
 
+  // ! TO DELETE
+  async function handleLogout() {
+    let { error } = await supabase.auth.signOut();
+    console.log(error);
+    queryClient.clear();
+    navigate('/login', { replace: true });
+  }
+
   return (
     <div className='flex flex-col h-screen p-10 relative'>
       <img
@@ -96,6 +105,10 @@ function Home() {
         </div>
       </div>
       <div className='flex flex-col gap-8 '>
+        {/* // ! TO DELETE */}
+        <Button variant='secondary' onClick={handleLogout}>
+          Logout
+        </Button>
         <Button onClick={() => navigate('createbudget')}>New Budget</Button>
         <Button variant='secondary' onClick={() => navigate('budgets')}>
           Old Budget

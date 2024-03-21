@@ -3,7 +3,7 @@ import deleteIcon from '../../assets/trash.svg';
 import editIcon from '../../assets/edit.svg';
 import { useState } from 'react';
 import ConfirmDelete from '../../components/ConfirmDelete';
-import useDeleteExpense from '../../hooks/useDeleteExpense';
+import useDeleteExpense from './useDeleteExpense';
 import { useNavigate } from 'react-router-dom';
 
 function ExpenseItem({ expenses, budgetName }) {

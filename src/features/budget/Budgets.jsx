@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import BudgetCard from './BudgetCard';
 import Message from '../../components/Message';
 import { FullPageSpinner } from '../../components/Spinner';
-import useGetBudgets from '../../hooks/useGetBudgets';
+import useGetBudgets from './useGetBudgets';
 
 function Budgets() {
   const navigate = useNavigate();

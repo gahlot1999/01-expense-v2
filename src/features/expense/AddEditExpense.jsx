@@ -2,9 +2,9 @@ import { useForm } from 'react-hook-form';
 import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import Input from '../../components/Input';
 import { useLocation, useParams } from 'react-router-dom';
-import useAddExpense from '../../hooks/useAddExpense';
+import useAddExpense from './useAddExpense';
 import { FullPageSpinner } from '../../components/Spinner';
-import useEditExpense from '../../hooks/useEditExpense';
+import useEditExpense from './useEditExpense';
 import useGetCategories from '../config/categories/useGetCategories';
 import AddEditExpenseForm from './AddEditExpenseForm';
 
