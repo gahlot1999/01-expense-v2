@@ -8,9 +8,13 @@ const categories = [
   {
     title: 'Categories',
     icon: expenseCategoryIcon,
-    path: '/categories',
+    path: '/home/categories',
   },
-  { title: 'Predefined', icon: predefinedExpensesIcon, path: '/predefined  ' },
+  {
+    title: 'Predefined',
+    icon: predefinedExpensesIcon,
+    path: '/home/predefined  ',
+  },
 ];
 
 function Config() {
@@ -19,7 +23,7 @@ function Config() {
   return (
     <>
       <div className='bg-yellow-100 rounded-[0_0_3.2rem_3.2rem]'>
-        <HeaderWithBackButton title='Configurations' navigateTo='/' />
+        <HeaderWithBackButton title='Configurations' navigateTo='/home' />
       </div>
       <div className='mt-4 p-10 grid grid-cols-2 gap-4 justify-items-center items-center text-center'>
         {categories.map((cat) => (

@@ -5,6 +5,7 @@ import backBtnWhite from '../assets/arrow-left-white.png';
 function HeaderWithBackButton({
   title,
   variant = 'white',
+  backBtn = true,
   children,
   navigateTo = -1,
 }) {
@@ -12,12 +13,17 @@ function HeaderWithBackButton({
 
   return (
     <div className='p-10 flex items-center justify-between'>
-      <img
-        src={variant === 'black' ? backBtnBlack : backBtnWhite}
-        alt='back button icon'
-        className='w-[2.2rem] cursor-pointer'
-        onClick={() => navigate(navigateTo)}
-      />
+      {backBtn ? (
+        <img
+          src={variant === 'black' ? backBtnBlack : backBtnWhite}
+          alt='back button icon'
+          className='w-[2.2rem] cursor-pointer'
+          onClick={() => navigate(navigateTo)}
+        />
+      ) : (
+        <p></p>
+      )}
+
       <p
         className={`${
           variant === 'black' ? 'text-dark-75' : 'text-light-100'
@@ -25,7 +31,7 @@ function HeaderWithBackButton({
       >
         {title}
       </p>
-      <span className='basis-[2.2rem]'>{children}</span>
+      <span className='basis-[2.2rem] shrink-0'>{children}</span>
     </div>
   );
 }

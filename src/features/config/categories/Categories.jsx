@@ -26,7 +26,7 @@ function Categories() {
   return (
     <div className='h-screen flex flex-col'>
       <div className='bg-yellow-100 rounded-[0_0_3.2rem_3.2rem]'>
-        <HeaderWithBackButton title='Categories' navigateTo='/config' />
+        <HeaderWithBackButton title='Categories' navigateTo='/home/config' />
       </div>
       {isExpenseCategoriesLoading ? (
         <FullPageSpinner />

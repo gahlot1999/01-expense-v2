@@ -2,9 +2,11 @@ function Spinner() {
   return <span className='spinner h-[3rem] w-[3rem]'></span>;
 }
 
-function FullPageSpinner() {
+function FullPageSpinner({ additionalStyles }) {
   return (
-    <div className='h-full grid items-center justify-center'>
+    <div
+      className={`h-full grid items-center justify-center ${additionalStyles}`}
+    >
       <span className='spinner h-[3rem] w-[3rem]'></span>
     </div>
   );

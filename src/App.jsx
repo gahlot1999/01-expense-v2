@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Budgets from './features/budget/Budgets';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -9,7 +9,10 @@ import AddEditExpense from './features/expense/AddEditExpense';
 import Config from './features/config/Config';
 import Categories from './features/config/categories/Categories';
 import Home from './features/home/Home';
-import SignIn from './features/auth/signin/SignIn';
+import Login from './features/auth/signin/Login';
+import SignUp from './features/auth/signup/SignUp';
+import Parent from './features/parent/Parent';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 function App() {
   const queryClient = new QueryClient();
@@ -19,16 +22,30 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<SignIn />} />
-          <Route path='home' element={<Home />} />
-          <Route path='config' element={<Config />} />
-          <Route path='categories' element={<Categories />} />
-          <Route path='createbudget' element={<AddEditBudget />} />
-          <Route path='editbudget' element={<AddEditBudget />} />
-          <Route path='budgets' element={<Budgets />} />
-          <Route path='budgets/:id' element={<Budget />} />
-          <Route path='budgets/:id/addexpense' element={<AddEditExpense />} />
-          <Route path='budgets/:id/editexpense' element={<AddEditExpense />} />
+          <Route path='/' element={<Navigate to='/login' />} />
+          <Route path='login' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
+          <Route
+            path='home'
+            element={
+              <ProtectedRoute>
+                <Parent />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Home />} />
+            <Route path='config' element={<Config />} />
+            <Route path='categories' element={<Categories />} />
+            <Route path='createbudget' element={<AddEditBudget />} />
+            <Route path='editbudget' element={<AddEditBudget />} />
+            <Route path='budgets' element={<Budgets />} />
+            <Route path='budgets/:id' element={<Budget />} />
+            <Route path='budgets/:id/addexpense' element={<AddEditExpense />} />
+            <Route
+              path='budgets/:id/editexpense'
+              element={<AddEditExpense />}
+            />
+          </Route>
         </Routes>
       </BrowserRouter>
       <Toaster />

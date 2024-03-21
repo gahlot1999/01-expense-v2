@@ -26,18 +26,23 @@ const Input = forwardRef(function Input(
   }
 
   return (
-    <input
-      ref={ref}
-      className={`
+    <div>
+      <input
+        ref={ref}
+        className={`
         ${baseStyles} 
         ${activeStyles} 
         ${errors[name] && errorStyles}
-      `}
-      type={type}
-      placeholder={placeholder}
-      autoComplete='off'
-      {...props}
-    />
+        `}
+        type={type}
+        placeholder={placeholder}
+        autoComplete='off'
+        {...props}
+      />
+      <p className='mt-2 text-left text-red-100 font-medium'>
+        {errors[name] && errors[name].message && errors[name].message}
+      </p>
+    </div>
   );
 });
 

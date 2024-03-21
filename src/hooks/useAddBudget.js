@@ -13,7 +13,7 @@ export default function useAddBudget(reset) {
     onSuccess: (data) => {
       toast.success('Budget created');
       queryClient.invalidateQueries({ queryKey: ['budgets'] });
-      navigate(`/budgets/${data[0].id}`, { replace: true });
+      navigate(`/home/budgets/${data[0].id}`, { replace: true });
     },
 
     onError: (err) => {

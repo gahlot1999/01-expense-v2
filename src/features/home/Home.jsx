@@ -76,8 +76,8 @@ function Home() {
         </div>
       </div>
       <div className='flex flex-col gap-8 '>
-        <Button onClick={() => navigate('/createbudget')}>New Budget</Button>
-        <Button variant='secondary' onClick={() => navigate('/budgets')}>
+        <Button onClick={() => navigate('createbudget')}>New Budget</Button>
+        <Button variant='secondary' onClick={() => navigate('budgets')}>
           Old Budget
         </Button>
       </div>

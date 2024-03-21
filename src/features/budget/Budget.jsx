@@ -38,14 +38,14 @@ function Budget() {
           <>
             <div className='bg-gradient-to-b from-[#FFF6E5] to-[#fefbf6d8] rounded-[0_0_2.5rem_2.5rem]'>
               <HeaderWithBackButton
-                navigateTo='/budgets'
+                navigateTo='/home/budgets'
                 variant='black'
                 title={budget?.budgetName || 'Budget Name'}
               >
                 <div className='flex justify-end gap-3'>
                   <img
                     onClick={() =>
-                      navigate('/editbudget', { state: { budget } })
+                      navigate('/home/editbudget', { state: { budget } })
                     }
                     src={editIcon}
                     alt='edit icon'

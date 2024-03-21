@@ -1,17 +1,18 @@
+import { capitalizeFirstLetter } from '../utils/helpers';
 import supabase from './Supabase';
 
 export async function addExpense(expense) {
-  const { data: response, error } = await supabase
+  const { data, error } = await supabase
     .from('expenses')
     .insert(expense)
     .select();
 
   if (error) {
     console.error(error);
-    throw new Error('Expense could not be added');
+    throw new Error(error.message);
   }
 
-  return response;
+  return data;
 }
 
 export async function editExpense(updatedExpense) {
@@ -23,7 +24,7 @@ export async function editExpense(updatedExpense) {
 
   if (error) {
     console.error(error);
-    throw new Error('Expense could not be updated');
+    throw new Error(error.message);
   }
 
   return data;
@@ -37,57 +38,54 @@ export async function deleteExpense(id) {
 
   if (error) {
     console.error(error);
-    throw new Error('Expense could not be deleted');
+    throw new Error(error.message);
   }
 }
 
 export async function addBudget(budget) {
-  const { data: response, error } = await supabase
+  const { data, error } = await supabase
     .from('budgets')
     .insert(budget)
     .select();
 
   if (error) {
     console.error(error);
-    if (error.message.includes('duplicate key value')) {
-      throw new Error('Duplicate budget name');
-    }
-    throw new Error('Budget could not be created');
+    throw new Error(error.message);
   }
 
-  return response;
+  return data;
 }
 
 export async function getBudgets() {
-  const { data: budgets, error } = await supabase
+  const { data, error } = await supabase
     .from('budgets')
     .select('*')
     .order('created_at', { ascending: false });
 
   if (error) {
     console.error(error);
-    throw new Error('Budgets could not be loaded');
+    throw new Error(error.message);
   }
 
-  return budgets;
+  return data;
 }
 
 export async function getBudget(id) {
-  const { data: budget, error } = await supabase
+  const { data, error } = await supabase
     .from('budgets')
     .select('*')
     .eq('id', Number(id));
 
   if (error) {
     console.error(error);
-    throw new Error('Budgets could not be loaded');
+    throw new Error(error.message);
   }
 
-  return budget;
+  return data;
 }
 
 export async function updateBudget(updatedObject) {
-  const { data: response, error } = await supabase
+  const { data, error } = await supabase
     .from('budgets')
     .update(updatedObject)
     .eq('id', Number(updatedObject.id))
@@ -95,24 +93,24 @@ export async function updateBudget(updatedObject) {
 
   if (error) {
     console.error(error);
-    throw new Error('Budget could not be updated');
+    throw new Error(error.message);
   }
 
-  return response;
+  return data;
 }
 
 export async function getExpenses(id) {
-  let { data: expenses, error } = await supabase
+  let { data, error } = await supabase
     .from('expenses')
     .select('*')
     .eq('budgetId', id);
 
   if (error) {
     console.error(error);
-    throw new Error('Expenses could not be loaded');
+    throw new Error(error.message);
   }
 
-  return expenses;
+  return data;
 }
 
 export async function deleteBudget(id) {
@@ -123,7 +121,7 @@ export async function deleteBudget(id) {
 
   if (error) {
     console.error(error);
-    throw new Error('Budget could not be deleted');
+    throw new Error(error.message);
   }
 }
 
@@ -169,3 +167,52 @@ export async function deleteCategory(id) {
 }
 
 // #endregion
+
+// #region AUTH
+
+export async function login(user) {
+  let { data, error } = await supabase.auth.signInWithPassword({
+    email: user.email,
+    password: user.password,
+  });
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function signUp(user) {
+  const { data, error } = await supabase.auth.signUp({
+    email: user.email,
+    password: user.password,
+    options: {
+      data: {
+        name: `${capitalizeFirstLetter(user.firstName)} ${capitalizeFirstLetter(
+          user.lastName,
+        )}`,
+      },
+    },
+  });
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function getCurrentUser() {
+  const { data: session } = await supabase.auth.getSession();
+
+  if (!session.session) return null;
+
+  const { data } = await supabase.auth.getUser();
+
+  return data?.user;
+}
+
+// #endregion AUTH
