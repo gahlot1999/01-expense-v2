@@ -5,6 +5,8 @@ import landingPageImg3 from '../../assets/landingPage3.png';
 import Button from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
 import configIcon from '../../assets/settings.svg';
+import { useQueryClient } from '@tanstack/react-query';
+import { useMemo } from 'react';
 
 const carouselData = [
   {
@@ -25,7 +27,16 @@ const carouselData = [
   },
 ];
 
+// queryClient.getQueryData(['user']).user_metadata.name
+
 function Home() {
+  const queryClient = useQueryClient();
+
+  const userName = useMemo(() => {
+    const userData = queryClient.getQueryData(['user']);
+    return userData ? userData.user_metadata.name : 'User';
+  }, [queryClient]);
+
   const navigate = useNavigate();
   const [activeCarouselIndex, setActiveCarouselndex] = useState(0);
   const activeItem = carouselData[activeCarouselIndex];
@@ -42,7 +53,7 @@ function Home() {
   }, []);
 
   return (
-    <div className='flex flex-col h-screen p-10 relative'>
+    <div className='flex flex-col gap-4 h-screen p-10 relative'>
       <img
         src={configIcon}
         onClick={() => navigate('config')}
@@ -51,8 +62,17 @@ function Home() {
         width={32}
         className='absolute right-8 top-8 cursor-pointer'
       />
+      <div className='text-center'>
+        <p>
+          Welcome
+          <br />
+          <span className='text-title-sm font-semibold text-dark-75'>
+            {userName}
+          </span>
+        </p>
+      </div>
       <div className='flex flex-col items-center justify-center flex-1 gap-4 text-center'>
-        <img src={activeItem.img} alt='carlousel image' className='w-[60%]' />
+        <img src={activeItem.img} alt='carlousel image' className='w-[15rem]' />
         <div className='grid grid-rows-[9rem_6rem_4rem] items-center justify-items-center'>
           <p className='font-bold leading-[1.1] text-title-lg text-dark-100'>
             {activeItem.title}
