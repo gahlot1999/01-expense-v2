@@ -53,7 +53,7 @@ function Home() {
   }, []);
 
   return (
-    <div className='flex flex-col gap-4 min-h-screen p-10 relative'>
+    <div className='flex flex-col h-screen p-10 relative'>
       <img
         src={configIcon}
         onClick={() => navigate('config')}
