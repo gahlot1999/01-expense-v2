@@ -53,7 +53,7 @@ function Home() {
   }, []);
 
   return (
-    <div className='flex flex-col gap-4 h-screen p-10 relative'>
+    <div className='flex flex-col gap-4 min-h-screen p-10 relative'>
       <img
         src={configIcon}
         onClick={() => navigate('config')}
@@ -63,10 +63,10 @@ function Home() {
         className='absolute right-8 top-8 cursor-pointer'
       />
       <div className='text-center'>
-        <p>
+        <p className='text-regular-lg text-dark-50'>
           Welcome
           <br />
-          <span className='text-title-sm font-semibold text-dark-75'>
+          <span className='text-title-md font-semibold text-dark-75'>
             {userName}
           </span>
         </p>
