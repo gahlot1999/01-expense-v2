@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Landing from './features/landing/Landing';
 import Budgets from './features/budget/Budgets';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -9,6 +8,8 @@ import Budget from './features/budget/Budget';
 import AddEditExpense from './features/expense/AddEditExpense';
 import Config from './features/config/Config';
 import Categories from './features/config/categories/Categories';
+import Home from './features/home/Home';
+import SignIn from './features/auth/signin/SignIn';
 
 function App() {
   const queryClient = new QueryClient();
@@ -18,7 +19,8 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Landing />} />
+          <Route path='/' element={<SignIn />} />
+          <Route path='home' element={<Home />} />
           <Route path='config' element={<Config />} />
           <Route path='categories' element={<Categories />} />
           <Route path='createbudget' element={<AddEditBudget />} />

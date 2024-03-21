@@ -25,7 +25,7 @@ const carouselData = [
   },
 ];
 
-function Landing() {
+function Home() {
   const navigate = useNavigate();
   const [activeCarouselIndex, setActiveCarouselndex] = useState(0);
   const activeItem = carouselData[activeCarouselIndex];
@@ -84,4 +84,4 @@ function Landing() {
     </div>
   );
 }
-export default Landing;
+export default Home;
