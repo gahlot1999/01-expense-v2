@@ -38,7 +38,7 @@ function Home() {
   }, [queryClient]);
 
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [activeCarouselIndex, setActiveCarouselndex] = useState(0);
   const activeItem = carouselData[activeCarouselIndex];
 
