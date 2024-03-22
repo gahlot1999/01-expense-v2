@@ -7,7 +7,7 @@ function Menu({ isMenuOpen, setIsMenuOpen }) {
 
   return (
     <div
-      className={`absolute right-8 top-[5.8rem] text-right bg-violet-20/95 text-violet-100 font-semibold text-regular-lg rounded-lg overflow-hidden divide-y-[0.01rem] divide-violet-100/30 ${
+      className={`absolute right-8 top-[5.8rem] text-right bg-violet-20/95 text-violet-100 font-semibold text-regular-md rounded-lg overflow-hidden divide-y-[0.01rem] divide-violet-100/30 ${
         isMenuOpen ? 'translate-x-0' : 'translate-x-[120%]'
       } transition-all `}
     >

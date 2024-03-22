@@ -47,6 +47,7 @@ export default {
         tiny: '1.2rem',
         small: '1.3rem',
         'regular-sm': '1.4rem',
+        'regular-md': '1.5rem',
         'regular-lg': '1.6rem',
         'title-sm': '1.8rem',
         'title-md': '2.4rem',
