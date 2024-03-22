@@ -13,7 +13,9 @@ function Login() {
     register,
     formState: { errors, isDirty },
     handleSubmit,
-  } = useForm({ values: { email: email ?? '', password: '' } });
+  } = useForm({
+    values: { email: email ?? 'gahlot1999@gmail.co', password: 'Ashish143@' },
+  });
 
   const { login, isUserLoggingIn } = useLogin();
 

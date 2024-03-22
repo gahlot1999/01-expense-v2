@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import landingPageImg1 from '../../assets/landingPage1.png';
 import landingPageImg2 from '../../assets/landingPage2.png';
 import landingPageImg3 from '../../assets/landingPage3.png';
 import Button from '../../components/Button';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import configIcon from '../../assets/settings.svg';
 import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import supabase from '../../services/Supabase';
+import Menu from '../menu/Menu';
 
 const carouselData = [
   {
@@ -28,17 +29,16 @@ const carouselData = [
   },
 ];
 
-// queryClient.getQueryData(['user']).user_metadata.name
-
 function Home() {
+  const menuRef = useRef(null);
   const queryClient = useQueryClient();
-
   const userName = useMemo(() => {
     const userData = queryClient.getQueryData(['user']);
     return userData ? userData.user_metadata.name : 'User';
   }, [queryClient]);
 
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeCarouselIndex, setActiveCarouselndex] = useState(0);
   const activeItem = carouselData[activeCarouselIndex];
 
@@ -53,24 +53,34 @@ function Home() {
     return () => clearInterval(changeCaruselItem);
   }, []);
 
-  // ! TO DELETE
-  async function handleLogout() {
-    let { error } = await supabase.auth.signOut();
-    console.log(error);
-    queryClient.clear();
-    navigate('/login', { replace: true });
-  }
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (!menuRef.current?.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener('mouseup', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mouseup', handleClickOutside);
+    };
+  }, [menuRef, setIsMenuOpen, isMenuOpen]);
 
   return (
     <div className='flex flex-col h-screen p-10 relative'>
       <img
+        ref={menuRef}
         src={configIcon}
-        onClick={() => navigate('config')}
+        onClick={() => {
+          setIsMenuOpen((curr) => !curr);
+        }}
         alt='config icon'
         height={32}
         width={32}
         className='absolute right-8 top-8 cursor-pointer'
       />
+
       <div className='text-center'>
         <p className='text-regular-lg text-dark-50'>
           Welcome
@@ -105,15 +115,13 @@ function Home() {
         </div>
       </div>
       <div className='flex flex-col gap-8 '>
-        {/* // ! TO DELETE */}
-        <Button variant='secondary' onClick={handleLogout}>
-          Logout
-        </Button>
         <Button onClick={() => navigate('createbudget')}>New Budget</Button>
         <Button variant='secondary' onClick={() => navigate('budgets')}>
           Old Budget
         </Button>
       </div>
+
+      <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </div>
   );
 }

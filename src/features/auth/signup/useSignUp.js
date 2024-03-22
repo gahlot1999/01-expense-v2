@@ -9,7 +9,6 @@ export default function useSignUp() {
     mutationFn: signUpApi,
 
     onSuccess: (data) => {
-      console.log(data);
       toast.success('User created');
       navigate('/login', { replace: true, state: { email: data.user.email } });
     },

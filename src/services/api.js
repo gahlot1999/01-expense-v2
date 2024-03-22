@@ -185,6 +185,15 @@ export async function login(user) {
   return data;
 }
 
+export async function logout() {
+  let { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+}
+
 export async function signUp(user) {
   const { data, error } = await supabase.auth.signUp({
     email: user.email,
