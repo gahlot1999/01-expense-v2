@@ -9,11 +9,13 @@ const categories = [
     title: 'Categories',
     icon: expenseCategoryIcon,
     path: '/categories',
+    disabled: false,
   },
   {
     title: 'Predefined',
     icon: predefinedExpensesIcon,
-    path: '/predefined  ',
+    path: '/predefined',
+    disabled: true,
   },
 ];
 
@@ -29,8 +31,10 @@ function Config() {
         {categories.map((cat) => (
           <div
             key={cat.title}
-            onClick={() => navigate(cat.path)}
-            className='p-8 cursor-pointer border-[.1rem] border-solid border-yellow-60 rounded-lg shadow-sm'
+            onClick={() => !cat.disabled && navigate(cat.path)}
+            className={`p-8 cursor-pointer border-[.1rem] border-solid border-yellow-60 rounded-lg shadow-sm ${
+              cat.disabled && 'disabled'
+            }`}
           >
             <img
               src={cat.icon}

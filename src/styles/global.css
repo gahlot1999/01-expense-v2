@@ -53,7 +53,8 @@ h6 {
 
 select:disabled,
 input:disabled,
-button:disabled {
+button:disabled,
+.disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

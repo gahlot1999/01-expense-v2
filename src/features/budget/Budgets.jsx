@@ -12,8 +12,6 @@ function Budgets() {
   const navigate = useNavigate();
   const { budgets, isBudgetsLoading } = useGetBudgets(uid);
 
-  console.log(budgets);
-
   return (
     <>
       <div className='bg-violet-100 h-screen flex flex-col'>

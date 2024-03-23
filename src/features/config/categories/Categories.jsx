@@ -8,6 +8,7 @@ import useGetCategories from './useGetCategories';
 import useAddCategory from './useAddCategory';
 import { useForm } from 'react-hook-form';
 import useUserId from '../../../hooks/useUserId';
+import Message from '../../../components/Message';
 
 function Categories() {
   const uid = useUserId();
@@ -31,11 +32,20 @@ function Categories() {
       <div className='bg-yellow-100 rounded-[0_0_3.2rem_3.2rem]'>
         <HeaderWithBackButton title='Categories' />
       </div>
-      {isExpenseCategoriesLoading ? (
-        <FullPageSpinner />
-      ) : (
-        <Category expenseCategories={expenseCategories} />
-      )}
+
+      <div className='p-10 flex-1 overflow-y-auto flex flex-col gap-4'>
+        {isExpenseCategoriesLoading ? (
+          <FullPageSpinner />
+        ) : expenseCategories.length === 0 ? (
+          <Message>
+            You have no categories. Tap on{' '}
+            <span className='font-bold'>Add New Category</span> to get started.
+          </Message>
+        ) : (
+          <Category expenseCategories={expenseCategories} />
+        )}
+      </div>
+
       <Button
         additionalStyles='rounded-none'
         onClick={() => setIsAddCategoryModalOpen(true)}
