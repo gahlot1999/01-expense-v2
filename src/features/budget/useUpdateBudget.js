@@ -9,7 +9,7 @@ export default function useUpdateBudget() {
     mutationFn: updateBudgetApi,
     onSuccess: (data) => {
       toast.success('Budget information updated');
-      navigate(`/budgets/${data[0].id}`, { replace: true });
+      navigate(`/budget/${data[0].id}`, { replace: true });
     },
     onError: (err) => {
       toast.error(err.message);

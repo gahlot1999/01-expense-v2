@@ -8,13 +8,12 @@ function Menu({ isMenuOpen, setIsMenuOpen }) {
   return (
     <div
       className={`absolute right-8 top-[5.8rem] text-right bg-violet-20/95 text-violet-100 font-semibold text-regular-md rounded-lg overflow-hidden divide-y-[0.01rem] divide-violet-100/30 ${
-        // isMenuOpen ? 'translate-x-0' : 'translate-x-[120%]'
         isMenuOpen ? 'scale-y-1' : 'scale-y-0'
-      } origin-top transition-all `}
+      } origin-top transition-all shadow-sm`}
     >
       <div
         className='hover:bg-violet-100 hover:text-light-60 py-3 px-10 cursor-pointer'
-        onClick={() => navigate('config')}
+        onClick={() => navigate('/config')}
       >
         <p>Configuration</p>
       </div>

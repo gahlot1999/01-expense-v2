@@ -8,6 +8,7 @@ function HeaderWithBackButton({
   backBtn = true,
   children,
   navigateTo = -1,
+  replace = false,
 }) {
   const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ function HeaderWithBackButton({
           src={variant === 'black' ? backBtnBlack : backBtnWhite}
           alt='back button icon'
           className='w-[2.2rem] cursor-pointer'
-          onClick={() => navigate(navigateTo)}
+          onClick={() => navigate(navigateTo, { replace: replace })}
         />
       ) : (
         <p></p>

@@ -17,6 +17,11 @@ function Button({
       activeStyles = 'bg-violet-20 text-violet-100';
       break;
 
+    case 'addCategory':
+      activeStyles =
+        'bg-violet-20 text-violet-100 text-title-sm px-6 py-[.75rem]';
+      break;
+
     default:
       break;
   }

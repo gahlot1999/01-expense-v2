@@ -26,25 +26,23 @@ function App() {
           <Route path='login' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
           <Route
-            path='home'
+            path='/'
             element={
               <ProtectedRoute>
                 <Parent />
               </ProtectedRoute>
             }
           >
-            <Route index element={<Home />} />
+            <Route path='home' element={<Home />} />
             <Route path='config' element={<Config />} />
             <Route path='categories' element={<Categories />} />
+            <Route path='predefined' element={<p>Predefined Expenses</p>} />
             <Route path='createbudget' element={<AddEditBudget />} />
             <Route path='editbudget' element={<AddEditBudget />} />
             <Route path='budgets' element={<Budgets />} />
-            <Route path='budgets/:id' element={<Budget />} />
-            <Route path='budgets/:id/addexpense' element={<AddEditExpense />} />
-            <Route
-              path='budgets/:id/editexpense'
-              element={<AddEditExpense />}
-            />
+            <Route path='budget/:id' element={<Budget />} />
+            <Route path='budget/:id/addexpense' element={<AddEditExpense />} />
+            <Route path='budget/:id/editexpense' element={<AddEditExpense />} />
           </Route>
         </Routes>
       </BrowserRouter>

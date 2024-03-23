@@ -3,11 +3,10 @@ import landingPageImg1 from '../../assets/landingPage1.png';
 import landingPageImg2 from '../../assets/landingPage2.png';
 import landingPageImg3 from '../../assets/landingPage3.png';
 import Button from '../../components/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import configIcon from '../../assets/settings.svg';
 import { useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import supabase from '../../services/Supabase';
 import Menu from '../menu/Menu';
 
 const carouselData = [
@@ -115,8 +114,8 @@ function Home() {
         </div>
       </div>
       <div className='flex flex-col gap-8 '>
-        <Button onClick={() => navigate('createbudget')}>New Budget</Button>
-        <Button variant='secondary' onClick={() => navigate('budgets')}>
+        <Button onClick={() => navigate('/createbudget')}>New Budget</Button>
+        <Button variant='secondary' onClick={() => navigate('/budgets')}>
           Old Budget
         </Button>
       </div>

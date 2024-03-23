@@ -53,7 +53,7 @@ function AddEditExpense() {
       editExpense(updatedExpenseObj);
       return;
     }
-    const newExpenseObj = { budgetId, ...data };
+    const newExpenseObj = { uid, budgetId, ...data };
     addExpense(newExpenseObj);
   }
 

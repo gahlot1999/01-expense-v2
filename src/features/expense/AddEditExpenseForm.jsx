@@ -2,8 +2,10 @@ import Label from '../../components/Label';
 import Button from '../../components/Button';
 import { ButtonSpinner } from '../../components/Spinner';
 import Input from '../../components/Input';
+import { useNavigate } from 'react-router-dom';
 
 function AddEditExpenseForm(props) {
+  const navigate = useNavigate();
   const {
     register,
     errors,
@@ -34,20 +36,29 @@ function AddEditExpenseForm(props) {
           disabled={isProcessing}
         />
       </div>
-      <div>
-        <Label variant='form'>Expense Category</Label>
-        <select
-          {...register('expenseCategory', { required: true })}
-          disabled={isProcessing}
-          className={`${errors['expenseCategory'] && 'border-red-100'}`}
-        >
-          <option hidden></option>
-          {expenseCategories?.map((cat) => (
-            <option key={cat.categoryValue} value={cat.categoryValue}>
-              {cat.categoryLabel}
-            </option>
-          ))}
-        </select>
+      <div className='flex gap-8 items-end'>
+        <div className='flex-1'>
+          <Label variant='form'>Expense Category</Label>
+          <select
+            {...register('expenseCategory', { required: true })}
+            disabled={isProcessing}
+            className={`${errors['expenseCategory'] && 'border-red-100'}`}
+          >
+            <option hidden></option>
+            {expenseCategories?.map((cat) => (
+              <option
+                key={cat.categoryValue}
+                value={cat.categoryValue}
+                className=''
+              >
+                {cat.categoryLabel}
+              </option>
+            ))}
+          </select>
+        </div>
+        <Button variant='addCategory' onClick={() => navigate('/categories')}>
+          +
+        </Button>
       </div>
       <Button
         type='submit'

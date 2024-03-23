@@ -8,12 +8,12 @@ const categories = [
   {
     title: 'Categories',
     icon: expenseCategoryIcon,
-    path: '/home/categories',
+    path: '/categories',
   },
   {
     title: 'Predefined',
     icon: predefinedExpensesIcon,
-    path: '/home/predefined  ',
+    path: '/predefined  ',
   },
 ];
 

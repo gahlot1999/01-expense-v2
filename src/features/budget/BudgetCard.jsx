@@ -5,7 +5,7 @@ function BudgetCard({ budgets }) {
   const navigate = useNavigate();
 
   function handleBudgetClick(budgetId) {
-    navigate(`${budgetId}`);
+    navigate(`/budget/${budgetId}`);
   }
 
   return (

@@ -30,7 +30,7 @@ function Budgets() {
           )}
         </div>
 
-        <Button onClick={() => navigate('/home/createbudget')}>
+        <Button onClick={() => navigate('/createbudget')}>
           Add new budget
         </Button>
       </div>

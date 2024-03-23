@@ -50,6 +50,8 @@ export async function addBudget(budget) {
 
   if (error) {
     console.error(error);
+    if (error.message.includes('duplicate key value'))
+      throw new Error('Duplicate budget name');
     throw new Error(error.message);
   }
 
@@ -60,8 +62,8 @@ export async function getBudgets(uid) {
   const { data, error } = await supabase
     .from('budgets')
     .select('*')
-    .eq('uid', uid)
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false })
+    .eq('uid', uid);
 
   if (error) {
     console.error(error);
@@ -71,11 +73,12 @@ export async function getBudgets(uid) {
   return data;
 }
 
-export async function getBudget(id) {
+export async function getBudget(id, uid) {
   const { data, error } = await supabase
     .from('budgets')
     .select('*')
-    .eq('id', Number(id));
+    .eq('id', Number(id))
+    .eq('uid', uid);
 
   if (error) {
     console.error(error);
@@ -100,11 +103,12 @@ export async function updateBudget(updatedObject) {
   return data;
 }
 
-export async function getExpenses(id) {
+export async function getExpenses(id, uid) {
   let { data, error } = await supabase
     .from('expenses')
     .select('*')
-    .eq('budgetId', id);
+    .eq('budgetId', id)
+    .eq('uid', uid);
 
   if (error) {
     console.error(error);
@@ -129,7 +133,6 @@ export async function deleteBudget(id) {
 // #region CATEGORIES
 
 export async function getCategories(uid) {
-  console.log(uid);
   let { data: expenseCategories, error } = await supabase
     .from('expenseCategories')
     .select('*')

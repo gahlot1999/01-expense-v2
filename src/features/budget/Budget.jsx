@@ -6,19 +6,21 @@ import MoneyCard from '../../components/MoneyCard';
 import Button from '../../components/Button';
 import useGetExpenses from '../expense/useGetExpenses';
 import ExpenseItem from '../expense/ExpenseItem';
-import { FullPageSpinner, Spinner } from '../../components/Spinner';
+import { FullPageSpinner } from '../../components/Spinner';
 import Message from '../../components/Message';
 import useGetBudget from './useGetBudget';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import { useState } from 'react';
 import useDeleteBudget from './useDeleteBudget';
+import useUserId from '../../hooks/useUserId';
 
 function Budget() {
+  const uid = useUserId();
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
-  const { budget, isBudgetLoading } = useGetBudget(id);
+  const { budget, isBudgetLoading } = useGetBudget(id, uid);
   const { expenses, isExpensesLoading } = useGetExpenses(id);
   const { deleteBudget, isBudgetDeleting } = useDeleteBudget(
     setIsConfirmDeleteModalOpen,
@@ -38,14 +40,14 @@ function Budget() {
           <>
             <div className='bg-gradient-to-b from-[#FFF6E5] to-[#fefbf6d8] rounded-[0_0_2.5rem_2.5rem]'>
               <HeaderWithBackButton
-                navigateTo='/home/budgets'
+                navigateTo='/budgets'
                 variant='black'
                 title={budget?.budgetName || 'Budget Name'}
               >
                 <div className='flex justify-end gap-3'>
                   <img
                     onClick={() =>
-                      navigate('/home/editbudget', { state: { budget } })
+                      navigate('/editbudget', { state: { budget } })
                     }
                     src={editIcon}
                     alt='edit icon'
