@@ -6,7 +6,7 @@ import useLogin from './useLogin';
 import { ButtonSpinner } from '../../../components/Spinner';
 import Quote from '../../../components/Quote';
 import { useUser } from '../useUser';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 const moneyQuotes = [
   'A budget tells money where to go, not where it went.',
@@ -61,7 +61,7 @@ function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email;
-  const randomQuoteIndex = Math.floor(Math.random() * 44) + 1;
+  const [randomQuoteIndex] = useState(Math.floor(Math.random() * 44) + 1);
 
   const {
     register,
