@@ -84,10 +84,10 @@ function Login() {
   }, [isAuthenticated, navigate]);
 
   return (
-    <div className='h-screen flex flex-col'>
+    <div className='h-screen grid grid-rows-[min-content_1fr] lg:grid-cols-2 lg:grid-rows-1'>
       <Quote quote={moneyQuotes[randomQuoteIndex]} />
-      <div className='flex-1 bg-violet-20 grid content-center p-10 text-center'>
-        <form className='space-y-4 w-full' onSubmit={handleSubmit(handleLogin)}>
+      <div className='bg-violet-20 grid content-center p-10 text-center'>
+        <form className='space-y-4' onSubmit={handleSubmit(handleLogin)}>
           <Input
             placeholder='Email'
             type='email'
