@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
+      serif: 'serif',
     },
     colors: {
       'dark-25': '#7A7E80',

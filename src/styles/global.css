@@ -111,30 +111,3 @@ select {
     transform: rotate(360deg);
   }
 }
-
-.quote {
-  position: relative;
-  isolation: isolate;
-  /* background-color: #d3bdff; */
-}
-
-.quote > p {
-  text-align: center;
-  padding: 4rem;
-  padding-bottom: 0;
-  font-size: 3.2rem;
-  font-weight: 700;
-  color: #464a4d;
-}
-
-.quote:before {
-  content: open-quote;
-  font-family: serif;
-  font-weight: 900;
-  font-size: 25rem;
-  color: #d3bdff;
-  position: absolute;
-  top: -10rem;
-  left: -0.5rem;
-  z-index: -1;
-}
