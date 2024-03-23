@@ -19,15 +19,22 @@ function BudgetCard({ budgets }) {
           <div className='border border-dark-25/30 rounded-[1rem_0_1rem_0] flex items-center justify-between gap-4 p-4 relative'>
             <div>
               <p className='text-dark-100 font-semibold text-small'>
-                {budget.budgetName}
+                {/* {budget.budgetName} */}
+                jijpa jpadpa pjadjapd j apjdopaj doajd apjd pojsda dasd asd pajd
+                aopjd ajp a sd poas dj
               </p>
               <p className='break-all text-dark-50 text-extra-tiny'>
                 {budget.budgetDescription || `${budget.budgetName} budget`}
               </p>
             </div>
-            <p className='bg-green-100 p-[.4rem_1rem] rounded-lg text-extra-tiny font-semibold text-light-100'>
-              {formatCurrency(budget.budgetAmount)}
-            </p>
+            <div className='flex items-center gap-4'>
+              <p className='bg-green-100 p-[.4rem_1rem] rounded-lg text-extra-tiny font-semibold text-light-100'>
+                {formatCurrency(budget.budgetAmount)}
+              </p>
+              <p className='bg-red-100 p-[.4rem_1rem] rounded-lg text-extra-tiny font-semibold text-light-100'>
+                {formatCurrency(budget.balanceBudget)}
+              </p>
+            </div>
           </div>
 
           <p className='block ml-auto text-extra-tiny text-dark-50/60 italic'>
