@@ -21,15 +21,10 @@ function Budget() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { budget, isBudgetLoading } = useGetBudget(id, uid);
-  const { expenses, isExpensesLoading } = useGetExpenses(id);
+  const { expenses, isExpensesLoading } = useGetExpenses(id, uid);
   const { deleteBudget, isBudgetDeleting } = useDeleteBudget(
     setIsConfirmDeleteModalOpen,
   );
-
-  const expenseAmount =
-    budget?.budgetAmount -
-    (expenses?.reduce((total, expense) => total + expense.expenseAmount, 0) ||
-      budget?.expenseAmount);
 
   return (
     <>
@@ -63,7 +58,7 @@ function Budget() {
               </HeaderWithBackButton>
               <div className='p-10 pt-0 flex items-center justify-center gap-6'>
                 <MoneyCard variant='income' amount={budget?.budgetAmount} />
-                <MoneyCard variant='expense' amount={expenseAmount} />
+                <MoneyCard variant='expense' amount={budget?.balanceBudget} />
               </div>
             </div>
             <div className='flex-1 overflow-auto p-10 flex flex-col gap-4'>
