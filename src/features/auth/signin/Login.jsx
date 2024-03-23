@@ -5,10 +5,14 @@ import Input from '../../../components/Input';
 import { useForm } from 'react-hook-form';
 import useLogin from './useLogin';
 import { ButtonSpinner } from '../../../components/Spinner';
+import useGetQuote from '../../../hooks/useGetQuote';
 
 function Login() {
   const location = useLocation();
   const email = location.state?.email;
+
+  // const { data, isQuoteLoading } = useGetQuote();
+
   const {
     register,
     formState: { errors, isDirty },
@@ -24,9 +28,15 @@ function Login() {
   }
 
   return (
-    <>
+    <div className='h-screen flex flex-col'>
+      <div className='quote'>
+        <p>
+          Time is like money, the less we have of it to spare the further we
+          make it go.
+        </p>
+      </div>
       <HeaderWithBackButton backBtn={false} variant='black' title='Login' />
-      <div className='p-10 text-center'>
+      <div className='text-center px-10 py-0'>
         <form className='space-y-8' onSubmit={handleSubmit(handleLogin)}>
           <Input
             placeholder='Email'
@@ -68,7 +78,7 @@ function Login() {
           </Link>
         </p>
       </div>
-    </>
+    </div>
   );
 }
 

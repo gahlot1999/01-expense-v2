@@ -1,6 +1,26 @@
 import { capitalizeFirstLetter } from '../utils/helpers';
 import supabase from './Supabase';
 
+export async function getQuote() {
+  const apiKey = import.meta.env.VITE_NINJAS_API_KEY;
+  const url = `https://api.api-ninjas.com/v1/quotes?category=money`;
+
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'x-api-key': apiKey,
+      },
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
 export async function addExpense(expense) {
   const { data, error } = await supabase
     .from('expenses')
