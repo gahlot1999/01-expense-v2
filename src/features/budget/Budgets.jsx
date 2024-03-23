@@ -5,10 +5,12 @@ import BudgetCard from './BudgetCard';
 import Message from '../../components/Message';
 import { FullPageSpinner } from '../../components/Spinner';
 import useGetBudgets from './useGetBudgets';
+import useUserId from '../../hooks/useUserId';
 
 function Budgets() {
+  const uid = useUserId();
   const navigate = useNavigate();
-  const { budgets, isBudgetsLoading } = useGetBudgets();
+  const { budgets, isBudgetsLoading } = useGetBudgets(uid);
 
   return (
     <>

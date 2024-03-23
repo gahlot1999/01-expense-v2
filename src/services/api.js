@@ -56,10 +56,11 @@ export async function addBudget(budget) {
   return data;
 }
 
-export async function getBudgets() {
+export async function getBudgets(uid) {
   const { data, error } = await supabase
     .from('budgets')
     .select('*')
+    .eq('uid', uid)
     .order('created_at', { ascending: false });
 
   if (error) {
@@ -128,6 +129,7 @@ export async function deleteBudget(id) {
 // #region CATEGORIES
 
 export async function getCategories(uid) {
+  console.log(uid);
   let { data: expenseCategories, error } = await supabase
     .from('expenseCategories')
     .select('*')

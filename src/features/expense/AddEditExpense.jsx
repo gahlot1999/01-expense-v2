@@ -7,9 +7,12 @@ import { FullPageSpinner } from '../../components/Spinner';
 import useEditExpense from './useEditExpense';
 import useGetCategories from '../config/categories/useGetCategories';
 import AddEditExpenseForm from './AddEditExpenseForm';
+import useUserId from '../../hooks/useUserId';
 
 function AddEditExpense() {
-  const { expenseCategories, isExpenseCategoriesLoading } = useGetCategories();
+  const uid = useUserId();
+  const { expenseCategories, isExpenseCategoriesLoading } =
+    useGetCategories(uid);
   const { id: budgetId } = useParams();
   const location = useLocation();
   const budgetName = location.state?.budgetName;

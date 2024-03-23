@@ -7,8 +7,10 @@ import useAddBudget from './useAddBudget';
 import useUpdateBudget from './useUpdateBudget';
 import { useLocation } from 'react-router-dom';
 import { ButtonSpinner } from '../../components/Spinner';
+import useUserId from '../../hooks/useUserId';
 
 function AddEditBudget() {
+  const uid = useUserId();
   const location = useLocation();
   const inEditMode = location.pathname === '/editbudget';
   const toBeEditedBudgetInfo = location.state?.budget;
@@ -38,6 +40,7 @@ function AddEditBudget() {
   function submitForm(data) {
     const newBudgetObj = [
       {
+        uid,
         budgetName: data.budgetName,
         budgetAmount: data.budgetAmount,
         budgetDescription: data.budgetDescription,
