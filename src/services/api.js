@@ -1,6 +1,23 @@
 import { capitalizeFirstLetter } from '../utils/helpers';
 import supabase from './Supabase';
 
+// #region EXPENSES
+
+export async function getExpenses(id, uid) {
+  let { data, error } = await supabase
+    .from('expenses')
+    .select('*')
+    .eq('budgetId', id)
+    .eq('uid', uid);
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
 export async function addExpense(expense) {
   const { data, error } = await supabase
     .from('expenses')
@@ -42,6 +59,10 @@ export async function deleteExpense(id) {
   }
 }
 
+// #endregion
+
+// #region BUDGET
+
 export async function addBudget(budget) {
   const { data, error } = await supabase
     .from('budgets')
@@ -52,36 +73,6 @@ export async function addBudget(budget) {
     console.error(error);
     if (error.message.includes('duplicate key value'))
       throw new Error('Duplicate budget name');
-    throw new Error(error.message);
-  }
-
-  return data;
-}
-
-export async function getBudgets(uid) {
-  const { data, error } = await supabase
-    .from('budgets')
-    .select('*')
-    .order('created_at', { ascending: false })
-    .eq('uid', uid);
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
-}
-
-export async function getBudget(id, uid) {
-  const { data, error } = await supabase
-    .from('budgets')
-    .select('*')
-    .eq('id', Number(id))
-    .eq('uid', uid);
-
-  if (error) {
-    console.error(error);
     throw new Error(error.message);
   }
 
@@ -103,21 +94,6 @@ export async function updateBudget(updatedObject) {
   return data;
 }
 
-export async function getExpenses(id, uid) {
-  let { data, error } = await supabase
-    .from('expenses')
-    .select('*')
-    .eq('budgetId', id)
-    .eq('uid', uid);
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
-}
-
 export async function deleteBudget(id) {
   const { error } = await supabase
     .from('budgets')
@@ -129,6 +105,38 @@ export async function deleteBudget(id) {
     throw new Error(error.message);
   }
 }
+
+export async function getBudget(id, uid) {
+  const { data, error } = await supabase
+    .from('budgets')
+    .select('*')
+    .eq('id', Number(id))
+    .eq('uid', uid);
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function getBudgets(uid) {
+  const { data, error } = await supabase
+    .from('budgets')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .eq('uid', uid);
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+// #endregion
 
 // #region CATEGORIES
 

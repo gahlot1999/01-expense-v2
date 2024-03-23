@@ -1,10 +1,13 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import { useForm } from 'react-hook-form';
 import useLogin from './useLogin';
 import { ButtonSpinner } from '../../../components/Spinner';
 import Quote from '../../../components/Quote';
+import { useUser } from '../useUser';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 const moneyQuotes = [
   'A budget tells money where to go, not where it went.',
   'Money looks better in the bank than on your feet.',
@@ -54,6 +57,8 @@ const moneyQuotes = [
 ];
 
 function Login() {
+  const { isAuthenticated } = useUser();
+  const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email;
   const randomQuoteIndex = Math.floor(Math.random() * 44) + 1;
@@ -72,8 +77,14 @@ function Login() {
     login(user);
   }
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/home');
+    }
+  }, [isAuthenticated, navigate]);
+
   return (
-    <div className='h-screen flex flex-col gap-4'>
+    <div className='h-screen flex flex-col'>
       <Quote quote={moneyQuotes[randomQuoteIndex]} />
       <div className='flex-1 bg-violet-20 grid content-center p-10 text-center'>
         <form className='space-y-4 w-full' onSubmit={handleSubmit(handleLogin)}>
