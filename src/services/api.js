@@ -144,6 +144,7 @@ export async function getCategories(uid) {
   let { data: expenseCategories, error } = await supabase
     .from('expenseCategories')
     .select('*')
+    .order('categoryLabel', { ascending: true })
     .eq('uid', uid);
 
   if (error) {
