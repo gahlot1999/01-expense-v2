@@ -12,6 +12,9 @@ export default function useDeleteExpense(setIsConfirmDeleteExpenseOpen) {
       queryClient.invalidateQueries({
         queryKey: ['expenses', budgetId],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['budget', budgetId],
+      });
       toast.success('Expense deleted');
       setIsConfirmDeleteExpenseOpen(false);
     },

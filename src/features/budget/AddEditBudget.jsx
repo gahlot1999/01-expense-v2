@@ -44,12 +44,21 @@ function AddEditBudget() {
         budgetName: data.budgetName,
         budgetAmount: data.budgetAmount,
         budgetDescription: data.budgetDescription,
-        // balanceBudget: data.budgetAmount,
+        balanceBudget: data.budgetAmount,
+      },
+    ];
+
+    const updateBudgetObj = [
+      {
+        uid,
+        budgetName: data.budgetName,
+        budgetAmount: data.budgetAmount,
+        budgetDescription: data.budgetDescription,
       },
     ];
 
     inEditMode
-      ? updateBudget({ ...newBudgetObj[0], id: toBeEditedBudgetInfo.id })
+      ? updateBudget({ ...updateBudgetObj[0], id: toBeEditedBudgetInfo.id })
       : createBudget(newBudgetObj);
   }
 

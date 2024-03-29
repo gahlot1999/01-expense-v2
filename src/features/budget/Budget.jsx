@@ -58,7 +58,7 @@ function Budget() {
               </HeaderWithBackButton>
               <div className='p-10 pt-0 flex items-center justify-center gap-6'>
                 <MoneyCard variant='income' amount={budget?.budgetAmount} />
-                <MoneyCard variant='expense' amount={budget?.balanceBudget} />
+                <MoneyCard variant='balance' amount={budget?.balanceBudget} />
               </div>
             </div>
             <div className='flex-1 overflow-auto p-10 flex flex-col gap-4'>

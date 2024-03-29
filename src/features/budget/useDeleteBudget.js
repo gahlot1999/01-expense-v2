@@ -12,7 +12,7 @@ export default function useDeleteBudget(setIsConfirmDeleteModalOpen) {
       queryClient.invalidateQueries({ queryKey: 'budgets' });
       toast.success('Budget deleted');
       setIsConfirmDeleteModalOpen(false);
-      navigate(-1, { replace: true });
+      navigate('/budgets', { replace: true });
     },
     onError: (err) => {
       toast.error(err.message);
