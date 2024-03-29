@@ -44,6 +44,7 @@ function AddEditBudget() {
         budgetName: data.budgetName,
         budgetAmount: data.budgetAmount,
         budgetDescription: data.budgetDescription,
+        balanceBudget: data.budgetAmount,
       },
     ];
 
