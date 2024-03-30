@@ -14,6 +14,7 @@ function AddEditBudget() {
   const location = useLocation();
   const inEditMode = location.pathname === '/editbudget';
   const toBeEditedBudgetInfo = location.state?.budget;
+  const expenses = location.state?.expenses;
 
   const formValues = toBeEditedBudgetInfo
     ? {
@@ -22,6 +23,7 @@ function AddEditBudget() {
         budgetDescription: toBeEditedBudgetInfo.budgetDescription,
       }
     : { budgetName: '', budgetAmount: null, budgetDescription: '' };
+
   const {
     register,
     handleSubmit,
@@ -38,28 +40,24 @@ function AddEditBudget() {
     isBudgetAdding === 'pending' || isBudgetUpdating === 'pending';
 
   function submitForm(data) {
-    const newBudgetObj = [
+    const budgetObj = [
       {
         uid,
         budgetName: data.budgetName,
         budgetAmount: data.budgetAmount,
         budgetDescription: data.budgetDescription,
-        balanceBudget: data.budgetAmount,
-      },
-    ];
-
-    const updateBudgetObj = [
-      {
-        uid,
-        budgetName: data.budgetName,
-        budgetAmount: data.budgetAmount,
-        budgetDescription: data.budgetDescription,
+        balanceBudget: inEditMode
+          ? data.budgetAmount -
+            expenses?.reduce((accumulator, currentExpense) => {
+              return accumulator + currentExpense.expenseAmount;
+            }, 0)
+          : data.budgetAmount,
       },
     ];
 
     inEditMode
-      ? updateBudget({ ...updateBudgetObj[0], id: toBeEditedBudgetInfo.id })
-      : createBudget(newBudgetObj);
+      ? updateBudget({ ...budgetObj[0], id: toBeEditedBudgetInfo.id })
+      : createBudget(budgetObj);
   }
 
   return (

@@ -42,7 +42,7 @@ function Budget() {
                 <div className='flex justify-end gap-3'>
                   <img
                     onClick={() =>
-                      navigate('/editbudget', { state: { budget } })
+                      navigate('/editbudget', { state: { budget, expenses } })
                     }
                     src={editIcon}
                     alt='edit icon'
