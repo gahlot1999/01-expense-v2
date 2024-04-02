@@ -62,7 +62,6 @@ button:disabled,
 input {
   outline: none;
   border: none;
-  -webkit-appearance: none;
 }
 
 input::-webkit-outer-spin-button,
@@ -74,6 +73,10 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+input[type='month'] {
+  -webkit-appearance: none;
 }
 
 select {
