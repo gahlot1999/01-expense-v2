@@ -13,6 +13,7 @@ import Login from './features/auth/signin/Login';
 import SignUp from './features/auth/signup/SignUp';
 import Parent from './features/parent/Parent';
 import ProtectedRoute from './utils/ProtectedRoute';
+import EmiLanding from './features/emi/EmiLanding';
 
 function App() {
   const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ function App() {
             <Route path='config' element={<Config />} />
             <Route path='categories' element={<Categories />} />
             <Route path='predefined' element={<p>Predefined Expenses</p>} />
+            <Route path='emi' element={<EmiLanding />} />
             <Route path='createbudget' element={<AddEditBudget />} />
             <Route path='editbudget' element={<AddEditBudget />} />
             <Route path='budgets' element={<Budgets />} />

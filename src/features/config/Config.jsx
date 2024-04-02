@@ -1,6 +1,7 @@
 import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import expenseCategoryIcon from '../../assets/category.svg';
 import predefinedExpensesIcon from '../../assets/expense-2.svg';
+import emiIcon from '../../assets/emi.svg';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +18,12 @@ const categories = [
     path: '/predefined',
     disabled: true,
   },
+  {
+    title: 'EMI',
+    icon: emiIcon,
+    path: '/emi',
+    disabled: false,
+  },
 ];
 
 function Config() {
@@ -27,12 +34,12 @@ function Config() {
       <div className='bg-yellow-100 rounded-[0_0_3.2rem_3.2rem]'>
         <HeaderWithBackButton title='Configurations' navigateTo='/home' />
       </div>
-      <div className='mt-4 p-10 grid grid-cols-2 gap-4 justify-items-center items-center text-center'>
+      <div className='max-w-[35rem] m-auto p-10 grid grid-cols-2 gap-12 text-center'>
         {categories.map((cat) => (
           <div
             key={cat.title}
             onClick={() => !cat.disabled && navigate(cat.path)}
-            className={`p-8 cursor-pointer border-[.1rem] border-solid border-yellow-60 rounded-lg shadow-sm ${
+            className={`w-full p-8 cursor-pointer border-[.1rem] border-solid border-yellow-60 rounded-lg shadow-sm ${
               cat.disabled && 'disabled'
             }`}
           >

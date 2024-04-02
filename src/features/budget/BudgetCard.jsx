@@ -34,9 +34,9 @@ function BudgetCard({ budgets }) {
               </p>
             </div>
           </div>
-
-          <p className='block ml-auto text-extra-tiny text-dark-50/60 italic'>
-            {formatDate(budget.created_at)}
+          <p className='ml-auto text-extra-tiny text-dark-50/60 italic'>
+            Budget Month:{' '}
+            <span className='font-semibold'>{budget.budgetMonth}</span>
           </p>
         </div>
       ))}

@@ -1,6 +1,21 @@
 import { capitalizeFirstLetter } from '../utils/helpers';
 import supabase from './Supabase';
 
+// #region EMI
+
+export async function getAllEmi(uid) {
+  let { data, error } = await supabase.from('emi').select('*').eq('uid', uid);
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+// #endregion EMI
+
 // #region EXPENSES
 
 export async function getExpenses(id, uid) {

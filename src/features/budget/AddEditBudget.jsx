@@ -8,6 +8,7 @@ import useUpdateBudget from './useUpdateBudget';
 import { useLocation } from 'react-router-dom';
 import { ButtonSpinner } from '../../components/Spinner';
 import useUserId from '../../hooks/useUserId';
+import { getCurrentMonthYear } from '../../utils/helpers';
 
 function AddEditBudget() {
   const uid = useUserId();
@@ -21,8 +22,14 @@ function AddEditBudget() {
         budgetName: toBeEditedBudgetInfo.budgetName,
         budgetAmount: toBeEditedBudgetInfo.budgetAmount.toString(),
         budgetDescription: toBeEditedBudgetInfo.budgetDescription,
+        budgetMonth: toBeEditedBudgetInfo.budgetMonth,
       }
-    : { budgetName: '', budgetAmount: null, budgetDescription: '' };
+    : {
+        budgetName: '',
+        budgetAmount: null,
+        budgetDescription: '',
+        budgetMonth: '',
+      };
 
   const {
     register,
@@ -46,6 +53,7 @@ function AddEditBudget() {
         budgetName: data.budgetName,
         budgetAmount: data.budgetAmount,
         budgetDescription: data.budgetDescription,
+        budgetMonth: data.budgetMonth,
         balanceBudget: inEditMode
           ? data.budgetAmount -
             expenses?.reduce((accumulator, currentExpense) => {
@@ -65,7 +73,7 @@ function AddEditBudget() {
       onSubmit={handleSubmit(submitForm)}
       className='bg-blue-100 h-screen flex flex-col'
     >
-      <div className='h-[30rem] flex-1 flex flex-col justify-between'>
+      <div className='flex-1 flex flex-col justify-between'>
         <HeaderWithBackButton
           title={`${inEditMode ? 'Edit Budget' : 'Add Budget'}`}
         />
@@ -75,11 +83,22 @@ function AddEditBudget() {
           placeholder='Budget Name...'
           variant='hero'
           disabled={isProcessing}
-          style={{ padding: '2.5rem' }}
+          style={{ padding: '1rem 2rem' }}
         />
       </div>
       <div className='bg-light-100 overflow-y-auto p-10 rounded-[3.2rem_3.2rem_0_0]'>
-        <div className='flex flex-col gap-8'>
+        <div className='flex flex-col gap-6'>
+          <div>
+            <Label variant='form'>Budget Month</Label>
+
+            <Input
+              {...register('budgetMonth', { required: true })}
+              type='month'
+              min={inEditMode ? null : getCurrentMonthYear()}
+              errors={errors}
+              disabled={isProcessing}
+            />
+          </div>
           <div>
             <Label variant='form'>Budget Amount</Label>
             <Input
@@ -98,11 +117,27 @@ function AddEditBudget() {
               disabled={isProcessing}
             />
           </div>
-          <Button
-            type='submit'
-            style={{ marginTop: '1rem' }}
-            disabled={isProcessing || !isDirty}
-          >
+
+          <div className='flex items-center justify-between'>
+            <div className='space-x-2'>
+              <input
+                type='checkbox'
+                id='emi'
+                className='align-middle mb-[.2rem]'
+              />
+              <Label for='emi'>Add EMI?</Label>
+            </div>
+            <div className='space-x-2'>
+              <input
+                type='checkbox'
+                id='defaultExpenses'
+                className='align-middle mb-[.2rem]'
+              />
+              <Label for='defaultExpenses'>Add Default Expenses?</Label>
+            </div>
+          </div>
+
+          <Button type='submit' disabled={isProcessing || !isDirty}>
             {isProcessing ? <ButtonSpinner /> : inEditMode ? 'Edit' : 'Add'}
           </Button>
         </div>
