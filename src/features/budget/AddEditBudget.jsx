@@ -123,17 +123,21 @@ function AddEditBudget() {
               <input
                 type='checkbox'
                 id='emi'
-                className='align-middle mb-[.2rem]'
+                className='align-middle mb-[.3rem]'
               />
-              <Label for='emi'>Add EMI?</Label>
+              <Label variant='form-checkbox' for='emi'>
+                Add EMI?
+              </Label>
             </div>
             <div className='space-x-2'>
               <input
                 type='checkbox'
                 id='defaultExpenses'
-                className='align-middle mb-[.2rem]'
+                className='align-middle mb-[.3rem]'
               />
-              <Label for='defaultExpenses'>Add Default Expenses?</Label>
+              <Label variant='form-checkbox' for='defaultExpenses'>
+                Add Default Expenses?
+              </Label>
             </div>
           </div>
 

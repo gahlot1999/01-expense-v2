@@ -12,6 +12,10 @@ function Label({ variant = 'form', children, mandatory = false, ...props }) {
       activeStyles = 'text-tiny text-dark-25';
       break;
 
+    case 'form-checkbox':
+      activeStyles = 'text-regular-sm text-dark-25';
+      break;
+
     default:
       break;
   }
@@ -21,7 +25,6 @@ function Label({ variant = 'form', children, mandatory = false, ...props }) {
         ${baseStyles} 
         ${activeStyles} 
         ${mandatory && mandatoryStyles}
-        
       `}
       {...props}
     >
