@@ -161,10 +161,10 @@ select {
 
 .react-datepicker__month-text--keyboard-selected {
   background-color: #f2f4f5;
+}
 
-  &:hover {
-    background-color: #e3e5e5;
-  }
+.react-datepicker__month-text--keyboard-selected:hover {
+  background-color: #e3e5e5;
 }
 
 /* #endregion REACT-DATE-PICKER */

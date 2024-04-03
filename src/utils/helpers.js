@@ -11,6 +11,14 @@ export function getMonthFromDateStr(str) {
   return new Date(str).getMonth() + 1;
 }
 
+export function getDateFromStr(str) {
+  return new Date(str);
+}
+
+export function getTodayDate() {
+  return new Date();
+}
+
 export function formatDate(dateStr, formatNeeded) {
   const formats = {
     day: 'numeric',
@@ -52,8 +60,7 @@ export function getPendingEmi(budgetInfo, emiData, uid) {
   const budgetMonth = budgetInfo[0].budgetMonth;
 
   const pendingEmi = emiData.filter(
-    (emi) =>
-      getMonthFromDateStr(emi.emiEnd) >= getMonthFromDateStr(budgetMonth),
+    (emi) => getDateFromStr(emi.emiEnd) >= getDateFromStr(budgetMonth),
   );
 
   return pendingEmi.map((emi) => {

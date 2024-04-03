@@ -1,4 +1,9 @@
-import { formatCurrency, formatDate } from '../../utils/helpers';
+import {
+  formatCurrency,
+  formatDate,
+  getDateFromStr,
+  getTodayDate,
+} from '../../utils/helpers';
 import deleteIcon from '../../assets/trash.svg';
 import editIcon from '../../assets/edit.svg';
 import ConfirmDelete from '../../components/ConfirmDelete';
@@ -15,7 +20,13 @@ function Emi({ emi, setFormStatus, setToBeEditedForm, setIsAddEditModalOpen }) {
   return (
     <>
       <div>
-        <div className='grid grid-cols-[minmax(15rem,1fr)_6rem] items-center gap-4 p-4 bg-gradient-to-r from-red-20/80 to-light-100 rounded-2xl'>
+        <div
+          className={`grid grid-cols-[minmax(15rem,1fr)_6rem] items-center gap-4 p-4 bg-gradient-to-r  to-light-100 rounded-2xl ${
+            getDateFromStr(emi.emiEnd) < getTodayDate()
+              ? 'from-light-20'
+              : 'from-red-20/80'
+          }`}
+        >
           <div className='space-y-2'>
             <div>
               <p className='font-semibold'>{emi.emiName}</p>
