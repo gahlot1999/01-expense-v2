@@ -8,9 +8,12 @@ import useUpdateBudget from './useUpdateBudget';
 import { useLocation } from 'react-router-dom';
 import { ButtonSpinner } from '../../components/Spinner';
 import useUserId from '../../hooks/useUserId';
-import { getCurrentMonthYear } from '../../utils/helpers';
+import { useState } from 'react';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function AddEditBudget() {
+  const [startDate, setStartDate] = useState('');
   const uid = useUserId();
   const location = useLocation();
   const inEditMode = location.pathname === '/editbudget';
@@ -90,13 +93,18 @@ function AddEditBudget() {
         <div className='flex flex-col gap-6'>
           <div>
             <Label variant='form'>Budget Month</Label>
-
-            <Input
+            {/* <Input
               {...register('budgetMonth', { required: true })}
               type='month'
               min={inEditMode ? null : getCurrentMonthYear()}
               errors={errors}
               disabled={isProcessing}
+            /> */}
+
+            <ReactDatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              showMonthYearPicker
             />
           </div>
           <div>
@@ -125,7 +133,7 @@ function AddEditBudget() {
                 id='emi'
                 className='align-middle mb-[.3rem]'
               />
-              <Label variant='form-checkbox' for='emi'>
+              <Label variant='form-checkbox' htmlFor='emi'>
                 Add EMI?
               </Label>
             </div>
@@ -135,7 +143,7 @@ function AddEditBudget() {
                 id='defaultExpenses'
                 className='align-middle mb-[.3rem]'
               />
-              <Label variant='form-checkbox' for='defaultExpenses'>
+              <Label variant='form-checkbox' htmlFor='defaultExpenses'>
                 Add Default Expenses?
               </Label>
             </div>
