@@ -7,6 +7,10 @@ export function formatCurrency(value) {
   }).format(value);
 }
 
+export function getMonthFromDateStr(str) {
+  return new Date(str).getMonth() + 1;
+}
+
 export function formatDate(dateStr, formatNeeded) {
   const formats = {
     day: 'numeric',
@@ -41,4 +45,27 @@ export function getCurrentMonthYear() {
   const formattedMonth = `${year}-${month}`;
 
   return formattedMonth;
+}
+
+export function getPendingEmi(budgetInfo, emiData, uid) {
+  const budgetId = budgetInfo[0].id;
+  const budgetMonth = budgetInfo[0].budgetMonth;
+
+  const pendingEmi = emiData.filter(
+    (emi) =>
+      getMonthFromDateStr(emi.emiEnd) >= getMonthFromDateStr(budgetMonth),
+  );
+
+  return pendingEmi.map((emi) => {
+    return {
+      isEMI: true,
+      emiId: emi.id,
+      budgetId,
+      expenseName: emi.emiName,
+      expenseCategory: emi.emiDescription,
+      expenseAmount: emi.emiAmount,
+      uid,
+      emiInfo: { start: emi.emiStart, end: emi.emiEnd },
+    };
+  });
 }

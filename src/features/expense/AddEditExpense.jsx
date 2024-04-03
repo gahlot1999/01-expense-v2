@@ -38,7 +38,7 @@ function AddEditExpense() {
     formState: { isDirty, errors },
   } = useForm({ values: formValues });
 
-  const { addExpense, expenseAddingStatus } = useAddExpense(reset);
+  const { addExpense, expenseAddingStatus } = useAddExpense({ reset: reset });
   const { editExpense, isExpenseEditing } = useEditExpense();
   const isProcessing =
     expenseAddingStatus === 'pending' || isExpenseEditing === 'pending';

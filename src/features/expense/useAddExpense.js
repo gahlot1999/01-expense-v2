@@ -3,23 +3,23 @@ import { addExpense as addExpenseApi } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-export default function useAddExpense(reset) {
+export default function useAddExpense({ source, reset }) {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate: addExpense, status: expenseAddingStatus } = useMutation({
     mutationFn: addExpenseApi,
     onSuccess: (data) => {
-      navigate(-1, { replace: true });
+      if (source !== 'emi') {
+        navigate(-1, { replace: true });
+        toast.success('Expense added');
+      }
       queryClient.invalidateQueries({ queryKey: ['budget', data[0].budgetId] });
-      toast.success('Expense added');
     },
     onError: (err) => {
       toast.error(err.message);
     },
-    onSettled: () => reset(),
+    onSettled: () => reset && reset(),
   });
 
   return { addExpense, expenseAddingStatus };
 }
-
-// ! can use data which already fetched with query reacg

@@ -63,10 +63,13 @@ function Budget() {
             </div>
             <div className='flex-1 overflow-auto p-10 flex flex-col gap-4'>
               {expenses.length > 0 ? (
-                <ExpenseItem
-                  expenses={expenses}
-                  budgetName={budget?.budgetName}
-                />
+                expenses.map((expense) => (
+                  <ExpenseItem
+                    key={expense.id}
+                    expense={expense}
+                    budgetName={budget?.budgetName}
+                  />
+                ))
               ) : (
                 <Message>
                   You have no expenses. Tap on{' '}

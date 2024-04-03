@@ -24,7 +24,7 @@ function EmiLanding() {
             <span className='font-bold'>Add New EMI</span> to get started.
           </Message>
         ) : (
-          <Emi emiData={emiData} />
+          emiData.map((emi) => <Emi emi={emi} key={emi.id} />)
         )}
       </div>
       <Button additionalStyles='rounded-none'>Add New EMI</Button>
@@ -33,3 +33,7 @@ function EmiLanding() {
 }
 
 export default EmiLanding;
+
+// (
+//           <Emi emiData={emiData} />
+//         )

@@ -1,4 +1,4 @@
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -8,10 +8,10 @@ import useUpdateBudget from './useUpdateBudget';
 import { useLocation } from 'react-router-dom';
 import { ButtonSpinner } from '../../components/Spinner';
 import useUserId from '../../hooks/useUserId';
-import { useState } from 'react';
-import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { formatDate } from '../../utils/helpers';
+import useGetAllEmi from '../emi/useGetAllEmi';
+import { useState } from 'react';
+import DatePicker from '../../components/DatePicker';
 
 function AddEditBudget() {
   const uid = useUserId();
@@ -19,6 +19,7 @@ function AddEditBudget() {
   const inEditMode = location.pathname === '/editbudget';
   const toBeEditedBudgetInfo = location.state?.budget;
   const expenses = location.state?.expenses;
+  const [addEmi, setAddEmi] = useState(true);
 
   const formValues = toBeEditedBudgetInfo
     ? {
@@ -44,7 +45,8 @@ function AddEditBudget() {
     values: formValues,
   });
 
-  const { createBudget, isBudgetAdding } = useAddBudget(reset);
+  const { emiData } = useGetAllEmi(uid);
+  const { createBudget, isBudgetAdding } = useAddBudget(reset, emiData, addEmi);
   const { updateBudget, isBudgetUpdating } = useUpdateBudget();
 
   const isProcessing =
@@ -57,7 +59,7 @@ function AddEditBudget() {
         budgetName: data.budgetName,
         budgetAmount: data.budgetAmount,
         budgetDescription: data.budgetDescription,
-        budgetMonth: data.budgetMonth,
+        budgetMonth: data.budgetMonth.toString(),
         balanceBudget: inEditMode
           ? data.budgetAmount -
             expenses?.reduce((accumulator, currentExpense) => {
@@ -92,24 +94,13 @@ function AddEditBudget() {
       </div>
       <div className='bg-light-100 overflow-y-auto p-10 rounded-[3.2rem_3.2rem_0_0]'>
         <div className='flex flex-col gap-6'>
-          <div>
-            <Label variant='form'>Budget Month</Label>
-            <Controller
-              control={control}
-              name='budgetMonth'
-              rules={{ required: { value: true } }}
-              render={({ field: { onChange, value } }) => (
-                <ReactDatePicker
-                  dateFormat='MMM-yyyy'
-                  showMonthYearPicker
-                  selected={value}
-                  onChange={(date) => {
-                    onChange(date);
-                  }}
-                />
-              )}
-            />
-          </div>
+          <DatePicker
+            name='budgetMonth'
+            control={control}
+            errors={errors}
+            dateFormat='MMM-yyyy'
+            label='Budget Month'
+          />
           <div>
             <Label variant='form'>Budget Amount</Label>
             <Input
@@ -132,8 +123,11 @@ function AddEditBudget() {
           <div className='flex items-center justify-between'>
             <div className='space-x-2'>
               <input
-                type='checkbox'
+                checked={addEmi}
+                value={addEmi}
+                onChange={() => setAddEmi((curr) => !curr)}
                 id='emi'
+                type='checkbox'
                 className='align-middle mb-[.3rem]'
               />
               <Label variant='form-checkbox' htmlFor='emi'>
@@ -141,14 +135,15 @@ function AddEditBudget() {
               </Label>
             </div>
             <div className='space-x-2'>
-              <input
-                type='checkbox'
+              {/* <input
+                {...register('addDefaultExpenses')}
                 id='defaultExpenses'
+                type='checkbox'
                 className='align-middle mb-[.3rem]'
               />
               <Label variant='form-checkbox' htmlFor='defaultExpenses'>
                 Add Default Expenses?
-              </Label>
+              </Label> */}
             </div>
           </div>
 
