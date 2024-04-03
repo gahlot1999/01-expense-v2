@@ -17,8 +17,6 @@ function ExpenseItem({ expense, budgetName }) {
     setIsConfirmDeleteExpenseOpen,
   );
 
-  console.log(expense);
-
   return (
     <>
       <div>
