@@ -25,17 +25,33 @@ export async function addEmi(emi) {
   return data;
 }
 
-export async function deleteEmi(id, uid) {
+export async function deleteEmi(data) {
   const { error } = await supabase
     .from('emi')
     .delete()
-    .eq('uid', uid)
-    .eq('id', id);
+    .eq('uid', data.uid)
+    .eq('id', data.selectedEmiId);
 
   if (error) {
     console.error(error);
     throw new Error(error.message);
   }
+}
+
+export async function updateEmi(object) {
+  const { data, error } = await supabase
+    .from('emi')
+    .update(object.updatedEmi)
+    .eq('id', object.id)
+    .eq('uid', object.uid)
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
 }
 
 // #endregion EMI

@@ -12,12 +12,12 @@ const categories = [
     path: '/categories',
     disabled: false,
   },
-  {
-    title: 'Predefined',
-    icon: predefinedExpensesIcon,
-    path: '/predefined',
-    disabled: true,
-  },
+  // {
+  //   title: 'Predefined',
+  //   icon: predefinedExpensesIcon,
+  //   path: '/predefined',
+  //   disabled: true,
+  // },
   {
     title: 'EMI',
     icon: emiIcon,

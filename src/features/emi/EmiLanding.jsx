@@ -12,6 +12,8 @@ function EmiLanding() {
   const uid = useUserId();
   const { emiData, isEmiLoading } = useGetAllEmi(uid);
   const [isAddEditEmiModalOpen, setIsAddEditModalOpen] = useState(false);
+  const [formStatus, setFormStatus] = useState('');
+  const [toBeEditedForm, setToBeEditedForm] = useState(null);
 
   return (
     <>
@@ -24,21 +26,36 @@ function EmiLanding() {
             <FullPageSpinner />
           ) : emiData.length === 0 ? (
             <Message>
-              You have no categories. Tap on{' '}
+              You have no emi. Tap on{' '}
               <span className='font-bold'>Add New EMI</span> to get started.
             </Message>
           ) : (
-            emiData.map((emi) => <Emi emi={emi} key={emi.id} />)
+            emiData.map((emi) => (
+              <Emi
+                emi={emi}
+                key={emi.id}
+                setFormStatus={setFormStatus}
+                setToBeEditedForm={setToBeEditedForm}
+                setIsAddEditModalOpen={setIsAddEditModalOpen}
+              />
+            ))
           )}
         </div>
         <Button
           additionalStyles='rounded-none'
-          onClick={() => setIsAddEditModalOpen(true)}
+          onClick={() => {
+            setFormStatus('new');
+            setIsAddEditModalOpen(true);
+          }}
         >
           Add New EMI
         </Button>
       </div>
+
       <AddEditEmiForm
+        toBeEditedForm={toBeEditedForm}
+        formStatus={formStatus}
+        key={Math.random()}
         isOpen={isAddEditEmiModalOpen}
         onClose={() => setIsAddEditModalOpen(false)}
       />
