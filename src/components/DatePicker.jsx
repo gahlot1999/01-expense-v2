@@ -8,6 +8,7 @@ function DatePicker({
   errors,
   dateFormat = 'dd-mm-yyyy',
   label = 'Label',
+  disabled = false,
 }) {
   return (
     <div>
@@ -18,6 +19,7 @@ function DatePicker({
         rules={{ required: { value: true } }}
         render={({ field: { onChange, value } }) => (
           <ReactDatePicker
+            disabled={disabled}
             className={`${
               errors[name] &&
               'outline outline-1 outline-red-100 outline-offset-[-1px]'

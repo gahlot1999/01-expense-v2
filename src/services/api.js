@@ -14,6 +14,30 @@ export async function getAllEmi(uid) {
   return data;
 }
 
+export async function addEmi(emi) {
+  const { data, error } = await supabase.from('emi').insert(emi).select();
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function deleteEmi(id, uid) {
+  const { error } = await supabase
+    .from('emi')
+    .delete()
+    .eq('uid', uid)
+    .eq('id', id);
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+}
+
 // #endregion EMI
 
 // #region EXPENSES
