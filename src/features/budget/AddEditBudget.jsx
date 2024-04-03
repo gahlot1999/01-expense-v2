@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import HeaderWithBackButton from '../../components/HeaderWithBackButton';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -11,9 +11,9 @@ import useUserId from '../../hooks/useUserId';
 import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { formatDate } from '../../utils/helpers';
 
 function AddEditBudget() {
-  const [startDate, setStartDate] = useState('');
   const uid = useUserId();
   const location = useLocation();
   const inEditMode = location.pathname === '/editbudget';
@@ -38,6 +38,7 @@ function AddEditBudget() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { isDirty, errors },
   } = useForm({
     values: formValues,
@@ -93,18 +94,20 @@ function AddEditBudget() {
         <div className='flex flex-col gap-6'>
           <div>
             <Label variant='form'>Budget Month</Label>
-            {/* <Input
-              {...register('budgetMonth', { required: true })}
-              type='month'
-              min={inEditMode ? null : getCurrentMonthYear()}
-              errors={errors}
-              disabled={isProcessing}
-            /> */}
-
-            <ReactDatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              showMonthYearPicker
+            <Controller
+              control={control}
+              name='budgetMonth'
+              rules={{ required: { value: true } }}
+              render={({ field: { onChange, value } }) => (
+                <ReactDatePicker
+                  dateFormat='MMM-yyyy'
+                  showMonthYearPicker
+                  selected={value}
+                  onChange={(date) => {
+                    onChange(date);
+                  }}
+                />
+              )}
             />
           </div>
           <div>
