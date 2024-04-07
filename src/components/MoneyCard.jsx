@@ -12,7 +12,7 @@ function MoneyCard({ variant, amount }) {
       `}
     >
       <div className='bg-light-100 p-2 rounded-[1.4rem]'>
-        <img src={isIncome ? incomeIcon : expenseIcon} alt='income' />
+        <img src={isIncome ? incomeIcon : expenseIcon} alt='income' className='w-full max-w-16' />
       </div>
       <div>
         <p className='text-regular-sm text-light-80'>

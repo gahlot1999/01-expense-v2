@@ -64,7 +64,7 @@ export async function getExpenses(id, uid) {
     .select('*')
     .eq('budgetId', id)
     .eq('uid', uid)
-    .order('created_at', { ascending: false });
+    .order('expenseName', { ascending: false });
 
   if (error) {
     console.error(error);
