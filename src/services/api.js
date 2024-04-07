@@ -88,6 +88,7 @@ export async function addExpense(expense) {
 }
 
 export async function editExpense(updatedExpense) {
+  console.log(updatedExpense);
   const { data, error } = await supabase
     .from('expenses')
     .update(updatedExpense)
