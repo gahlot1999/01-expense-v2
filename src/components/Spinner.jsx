@@ -1,5 +1,5 @@
 function Spinner() {
-  return <span className='spinner h-[3rem] w-[3rem]'></span>;
+  return <span className='spinner h-[3rem] w-[3rem] mx-auto'></span>;
 }
 
 function FullPageSpinner({ additionalStyles }) {

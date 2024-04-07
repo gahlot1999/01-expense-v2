@@ -23,9 +23,7 @@ function ExpenseItem({ expense, budgetName }) {
   const { deleteExpense, isExpenseDeleting } = useDeleteExpense(
     setIsConfirmDeleteExpenseOpen,
   );
-  const { editExpense, isExpenseEditing } = useEditExpense({
-    source: 'isPaid',
-  });
+  const { editExpense, isExpenseEditing } = useEditExpense();
   const isExpEditing = isExpenseEditing === 'pending';
 
   function handleIsPaidChange() {
@@ -44,7 +42,7 @@ function ExpenseItem({ expense, budgetName }) {
         <div>
           <div
             className={`grid grid-cols-[max-content_minmax(12rem,1fr)_8rem_6rem] items-center gap-4 p-4 bg-gradient-to-r to-light-100 rounded-2xl ${
-              isEmi && 'from-red-20/80'
+              isEmi && !isPaid && 'from-red-20/80'
             } ${isPaid ? 'from-green-20' : 'from-light-20'}`}
           >
             <div>

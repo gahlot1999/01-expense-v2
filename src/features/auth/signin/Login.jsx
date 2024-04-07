@@ -7,7 +7,7 @@ import { ButtonSpinner } from '../../../components/Spinner';
 import Quote from '../../../components/Quote';
 import { useUser } from '../useUser';
 import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+
 const moneyQuotes = [
   'A budget tells money where to go, not where it went.',
   'Money looks better in the bank than on your feet.',

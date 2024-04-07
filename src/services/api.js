@@ -63,7 +63,8 @@ export async function getExpenses(id, uid) {
     .from('expenses')
     .select('*')
     .eq('budgetId', id)
-    .eq('uid', uid);
+    .eq('uid', uid)
+    .order('created_at', { ascending: false });
 
   if (error) {
     console.error(error);
@@ -88,7 +89,6 @@ export async function addExpense(expense) {
 }
 
 export async function editExpense(updatedExpense) {
-  console.log(updatedExpense);
   const { data, error } = await supabase
     .from('expenses')
     .update(updatedExpense)
